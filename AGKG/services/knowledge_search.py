@@ -1,6 +1,6 @@
 import asyncio
 
-from app.repository.db.record import Record
+from AGKG.repository.db.record import Record
 
 
 async def insert_record(search_query, answer, user_id, optimized_result, is_satisfied, rewritten_query):
