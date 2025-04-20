@@ -3,7 +3,7 @@ from typing import Optional, Dict, Any
 import aiohttp
 class HttpClientBase:
     @classmethod
-    async def _method(cls, method: str, url: str, headers: dict = None, json_body: dict = None, params=None, timeout=5):
+    async def _method(cls, method: str, url: str, headers: dict = None, json_body: dict = None, params=None, timeout=120):
         if not headers:
             headers = {}
 
@@ -19,7 +19,7 @@ class HttpClientBase:
                 return await response.json()
 
     @classmethod
-    async def post(cls, url: str, headers: dict = None, json_body: dict = None, params=None, timeout=5):
+    async def post(cls, url: str, headers: dict = None, json_body: dict = None, params=None, timeout=120):
         return await cls._method('POST', url=url, headers=headers, json_body=json_body, params=params, timeout=timeout)
 
     @classmethod
