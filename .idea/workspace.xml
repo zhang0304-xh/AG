@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10c895b-820e-4a6f-b150-3b2c328f5495" name="更改" comment="初始化">
-      <change afterPath="$PROJECT_DIR$/script/embedding.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/client/neo4j_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/neo4j_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/tranE_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/tranE_client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/client/zhipu_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/zhipu_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -443,7 +438,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -482,7 +477,7 @@
       <workItem from="1741797467839" duration="8899000" />
       <workItem from="1741963842338" duration="581000" />
       <workItem from="1742019562340" duration="2729000" />
-      <workItem from="1742481026765" duration="23277000" />
+      <workItem from="1742481026765" duration="26741000" />
     </task>
     <task id="LOCAL-00001" summary="初始化">
       <option name="closed" value="true" />
@@ -492,7 +487,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741424183300</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="初始化">
+      <option name="closed" value="true" />
+      <created>1745125864031</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745125864031</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +515,7 @@
     <SUITE FILE_PATH="coverage/AGKG$tranE_client.coverage" NAME="tranE_client 覆盖结果" MODIFIED="1742637239140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
     <SUITE FILE_PATH="coverage/AGKG$zhipu_client.coverage" NAME="zhipu_client 覆盖结果" MODIFIED="1741422853784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/client" />
     <SUITE FILE_PATH="coverage/AGKG$knowledge_search.coverage" NAME="knowledge_search 覆盖结果" MODIFIED="1741417889942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/services" />
-    <SUITE FILE_PATH="coverage/AGKG$Flask__AGKG_app_py_.coverage" NAME="Flask (AGKG/app.py) 覆盖结果" MODIFIED="1745125641380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/AGKG$Flask__AGKG_app_py_.coverage" NAME="Flask (AGKG/app.py) 覆盖结果" MODIFIED="1745129765347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AGKG$zhipu_client__1_.coverage" NAME="zhipu_client (1) 覆盖结果" MODIFIED="1745124935315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
     <SUITE FILE_PATH="coverage/AGKG$tranE_client__1_.coverage" NAME="tranE_client (1) 覆盖结果" MODIFIED="1741437380650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
     <SUITE FILE_PATH="coverage/AGKG$entity_embedding.coverage" NAME="entity_embedding 覆盖结果" MODIFIED="1741786580712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/script" />

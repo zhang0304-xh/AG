@@ -12,7 +12,7 @@ import settings
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('zhipu_client')
 
-system_content = """
+qa_system_content = """
 # 任务目标
     对农业领域用户提问进行结构化解析，实现：
     1. 双重分类：问题类型识别 + 咨询意图识别
@@ -84,6 +84,17 @@ system_content = """
         "dependency_chain": ["Q1", "Q2"]
     }
 """
+
+format_prompt = """
+    你是一个专业的农业知识专家。
+    现在需要你根据提供的信息，生成一个完整、专业且易于理解的答案。
+    信息包含了问题类型、核心实体、查询意图和具体的查询结果。
+    请注意：
+    1. 答案要简洁明了，突出重点
+    2. 如果是列举类的结果，要适当分类或归纳
+    3. 保持专业性的同时要通俗易懂
+    4. 不要添加查询结果中没有的信息
+"""
 class ZhipuClient:
     def __init__(self):
         try:
@@ -95,120 +106,62 @@ class ZhipuClient:
             raise
 
     async def chat_completion(self, user_content, top_p=0.01, temperature=0.01, max_tokens=1024, stream=False):
+
+        logger.info(f"发送请求到智谱AI，问题: {user_content[:50]}...")
+
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": qa_system_content},
+                {"role": "user", "content": user_content}
+            ],
+            top_p=top_p,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            stream=stream
+        )
+
+        text = response.choices[0].message.content
+        logger.info(f"收到智谱AI响应: {text[:100]}...")
+
+        pattern = r'\{.*\}'
+        match = re.search(pattern, text, re.DOTALL)
+
+        if match:
+            json_str = match.group(0)
+            # 将字符串解析为 JSON 对象
+            json_data = json.loads(json_str)
+            return json_data
+
+    async def process_multiple_results(self, prompt: str) -> str:
+        """
+        处理多个查询结果，生成一个综合的答案
+        
+        Args:
+            prompt: 包含问题类型、核心实体、查询意图和查询结果的提示信息
+            
+        Returns:
+            str: 处理后的综合答案
+        """
         try:
-            logger.info(f"发送请求到智谱AI，问题: {user_content[:50]}...")
-            
-            # 如果API密钥未配置或无效，返回模拟数据用于测试
-            if not hasattr(settings, 'Config') or not hasattr(settings.Config, 'ZHIPUAI_API_KEY') or not settings.Config.ZHIPUAI_API_KEY:
-                logger.warning("未配置智谱API密钥，返回模拟数据")
-                return self._get_mock_data(user_content)
-            
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": system_content},
-                    {"role": "user", "content": user_content}
+                    {"role": "system", "content": format_prompt},
+                    {"role": "user", "content": prompt}
                 ],
-                top_p=top_p,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                stream=stream
+                top_p=0.01,
+                temperature=0.01,
+                max_tokens=1024
             )
             
-            text = response.choices[0].message.content
-            logger.info(f"收到智谱AI响应: {text[:100]}...")
+            answer = response.choices[0].message.content
+            return answer.strip()
             
-            pattern = r'\{.*\}'
-            match = re.search(pattern, text, re.DOTALL)
-
-            if match:
-                json_str = match.group(0)
-                try:
-                    # 将字符串解析为 JSON 对象
-                    json_data = json.loads(json_str)
-                    return json_data
-                except json.JSONDecodeError as e:
-                    logger.error(f"JSON解析错误: {str(e)}, 原始文本: {json_str[:100]}...")
-                    # 返回一个基本的结构化响应
-                    return self._create_fallback_response(user_content, "JSON解析错误")
-            else:
-                logger.warning(f"无法从响应中提取JSON结构: {text[:100]}...")
-                return self._create_fallback_response(user_content, "无法从响应中提取结构化信息")
-
         except Exception as e:
-            logger.error(f"调用智谱API时发生错误: {str(e)}")
+            logger.error(f"处理多个结果时发生错误: {str(e)}")
             logger.error(traceback.format_exc())
-            return self._create_fallback_response(user_content, f"API调用错误: {str(e)}")
-
-    def _create_fallback_response(self, question, error_msg):
-        """创建一个基本的响应结构"""
-        return {
-            "question": question,
-            "analysis": {
-                "question_type": "未能识别",
-                "core_entities": [],
-                "query_intent": "未能识别"
-            },
-            "knowledge_graph": [
-                {
-                    "head": "系统",
-                    "relation": "错误信息",
-                    "tail": error_msg
-                }
-            ],
-            "error": error_msg
-        }
-    
-    def _get_mock_data(self, question):
-        """返回模拟数据用于测试"""
-        if "水稻" in question or "稻" in question:
-            return {
-                "question": question,
-                "analysis": {
-                    "question_type": "关系推理",
-                    "core_entities": ["水稻"],
-                    "query_intent": "病害"
-                },
-                "knowledge_graph": [
-                    {
-                        "head": "水稻",
-                        "relation": "病害",
-                        "tail": "稻瘟病"
-                    }
-                ]
-            }
-        elif "小麦" in question:
-            return {
-                "question": question,
-                "analysis": {
-                    "question_type": "关系推理",
-                    "core_entities": ["小麦"],
-                    "query_intent": "病害"
-                },
-                "knowledge_graph": [
-                    {
-                        "head": "小麦",
-                        "relation": "病害",
-                        "tail": "小麦赤霉病"
-                    }
-                ]
-            }
-        else:
-            return {
-                "question": question,
-                "analysis": {
-                    "question_type": "关系推理",
-                    "core_entities": ["农作物"],
-                    "query_intent": "信息"
-                },
-                "knowledge_graph": [
-                    {
-                        "head": "农作物",
-                        "relation": "信息",
-                        "tail": "这是测试数据"
-                    }
-                ]
-            }
+            return None
 
 if __name__ == "__main__":
     client = ZhipuClient()
