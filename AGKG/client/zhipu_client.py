@@ -1,4 +1,3 @@
-import asyncio
 import json
 import re
 import logging
@@ -105,35 +104,44 @@ class ZhipuClient:
             logger.error(f"ZhipuClient初始化失败: {str(e)}")
             raise
 
-    async def chat_completion(self, user_content, top_p=0.01, temperature=0.01, max_tokens=1024, stream=False):
-
+    def chat_completion(self, user_content, top_p=0.01, temperature=0.01, max_tokens=1024, stream=False):
+        """
+        调用智谱AI进行对话，解析用户问题
+        """
         logger.info(f"发送请求到智谱AI，问题: {user_content[:50]}...")
 
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[
-                {"role": "system", "content": qa_system_content},
-                {"role": "user", "content": user_content}
-            ],
-            top_p=top_p,
-            temperature=temperature,
-            max_tokens=max_tokens,
-            stream=stream
-        )
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": qa_system_content},
+                    {"role": "user", "content": user_content}
+                ],
+                top_p=top_p,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                stream=stream
+            )
 
-        text = response.choices[0].message.content
-        logger.info(f"收到智谱AI响应: {text[:100]}...")
+            text = response.choices[0].message.content
+            logger.info(f"收到智谱AI响应: {text[:100]}...")
 
-        pattern = r'\{.*\}'
-        match = re.search(pattern, text, re.DOTALL)
+            pattern = r'\{.*\}'
+            match = re.search(pattern, text, re.DOTALL)
 
-        if match:
-            json_str = match.group(0)
-            # 将字符串解析为 JSON 对象
-            json_data = json.loads(json_str)
-            return json_data
+            if match:
+                json_str = match.group(0)
+                # 将字符串解析为 JSON 对象
+                json_data = json.loads(json_str)
+                return json_data
+            
+            return None
+        except Exception as e:
+            logger.error(f"调用智谱AI时发生错误: {str(e)}")
+            logger.error(traceback.format_exc())
+            return None
 
-    async def process_multiple_results(self, prompt: str) -> str:
+    def process_multiple_results(self, prompt: str) -> str:
         """
         处理多个查询结果，生成一个综合的答案
         
@@ -165,7 +173,7 @@ class ZhipuClient:
 
 if __name__ == "__main__":
     client = ZhipuClient()
-    response = asyncio.run(client.chat_completion("小麦有什么病？"))
+    response = client.chat_completion("小麦有什么病？")
     print(response)
 
 

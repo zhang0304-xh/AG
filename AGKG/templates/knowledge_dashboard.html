@@ -1,0 +1,521 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0"><i class="bi bi-graph-up"></i> 知识图谱统计大屏</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- 概览卡片 -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card h-100 border-0">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-circle p-3 bg-primary bg-opacity-10 me-3">
+                        <i class="bi bi-diagram-3 text-primary" style="font-size: 24px;"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">总节点数</h6>
+                        <h3 class="mb-0" id="total-nodes">--</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card h-100 border-0">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-circle p-3 bg-success bg-opacity-10 me-3">
+                        <i class="bi bi-arrow-left-right text-success" style="font-size: 24px;"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">总关系数</h6>
+                        <h3 class="mb-0" id="total-relations">--</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card h-100 border-0">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-circle p-3 bg-info bg-opacity-10 me-3">
+                        <i class="bi bi-tags text-info" style="font-size: 24px;"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">节点类别数</h6>
+                        <h3 class="mb-0" id="total-categories">--</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card h-100 border-0">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-circle p-3 bg-warning bg-opacity-10 me-3">
+                        <i class="bi bi-link-45deg text-warning" style="font-size: 24px;"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">关系类型数</h6>
+                        <h3 class="mb-0" id="total-relation-types">--</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 统计图表 -->
+    <div class="row">
+        <!-- 实体统计卡片 -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">实体类型分布</h4>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-outline-secondary" id="entity-fullscreen">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="loading-entity" class="text-center py-5">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">加载数据中...</p>
+                    </div>
+                    <div id="entity-stats" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 关系统计卡片 -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">关系类型分布</h4>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-outline-secondary" id="relation-fullscreen">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="loading-relation" class="text-center py-5">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">加载数据中...</p>
+                    </div>
+                    <div id="relation-stats" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 表格展示区域 -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">实体类别详情</h4>
+                </div>
+                <div class="card-body" style="max-height: 350px; overflow-y: auto;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">类别名称</th>
+                                <th scope="col">节点数量</th>
+                                <th scope="col">占比</th>
+                            </tr>
+                        </thead>
+                        <tbody id="entity-table-body">
+                            <tr>
+                                <td colspan="3" class="text-center">暂无数据</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card border-0">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">关系类型详情</h4>
+                </div>
+                <div class="card-body" style="max-height: 350px; overflow-y: auto;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">关系类型</th>
+                                <th scope="col">关系数量</th>
+                                <th scope="col">占比</th>
+                            </tr>
+                        </thead>
+                        <tbody id="relation-table-body">
+                            <tr>
+                                <td colspan="3" class="text-center">暂无数据</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+    // 图表引用
+    let entityChart = null;
+    let relationChart = null;
+    
+    // 颜色方案
+    const colors = [
+        '#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', 
+        '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#4E79A7'
+    ];
+    
+    // 加载统计数据
+    function loadStatistics() {
+        // 显示加载中状态
+        document.getElementById('loading-entity').style.display = 'flex';
+        document.getElementById('loading-relation').style.display = 'flex';
+        
+        // 初始化图表实例
+        entityChart = echarts.init(document.getElementById('entity-stats'));
+        relationChart = echarts.init(document.getElementById('relation-stats'));
+        
+        // 获取数据
+        fetch('/api/knowledge_graph/statistics')
+            .then(response => response.json())
+            .then(result => {
+                // 隐藏加载提示
+                document.getElementById('loading-entity').style.display = 'none';
+                document.getElementById('loading-relation').style.display = 'none';
+                
+                if (result.error) {
+                    console.error('Failed to load statistics:', result.error);
+                    showError('entity-stats', '无法加载实体统计数据');
+                    showError('relation-stats', '无法加载关系统计数据');
+                    return;
+                }
+                
+                try {
+                    // 解析API返回的统计数据
+                    const node_stats = Object.entries(result['实体类型分布'] || {}).map(([label, count]) => ({
+                        label,
+                        count
+                    }));
+                    
+                    const relation_stats = Object.entries(result['关系类型分布'] || {}).map(([type, count]) => ({
+                        type,
+                        count
+                    }));
+                    
+                    // 更新概览数据
+                    document.getElementById('total-nodes').textContent = (result['总实体数'] || 0).toLocaleString();
+                    document.getElementById('total-relations').textContent = (result['总关系数'] || 0).toLocaleString();
+                    document.getElementById('total-categories').textContent = (result['实体类型数'] || 0).toString();
+                    document.getElementById('total-relation-types').textContent = (result['关系类型数'] || 0).toString();
+                    
+                    // 初始化实体图表
+                    initEntityChart(node_stats);
+                    
+                    // 初始化关系图表
+                    initRelationChart(relation_stats);
+                    
+                    // 填充表格
+                    populateTables(node_stats, relation_stats);
+                } catch (error) {
+                    console.error('处理统计数据时出错:', error);
+                    showError('entity-stats', '数据格式错误，无法显示统计图表');
+                    showError('relation-stats', '数据格式错误，无法显示统计图表');
+                }
+            })
+            .catch(error => {
+                document.getElementById('loading-entity').style.display = 'none';
+                document.getElementById('loading-relation').style.display = 'none';
+                
+                console.error('Error loading statistics:', error);
+                showError('entity-stats', '加载数据时发生错误');
+                showError('relation-stats', '加载数据时发生错误');
+            });
+        
+        // 监听窗口大小变化
+        window.addEventListener('resize', function() {
+            if(entityChart) entityChart.resize();
+            if(relationChart) relationChart.resize();
+        });
+    }
+    
+    // 初始化实体图表
+    function initEntityChart(nodeStats) {
+        if (!nodeStats || nodeStats.length === 0) {
+            showError('entity-stats', '没有实体数据可供显示');
+            return;
+        }
+        
+        try {
+            // 确保数据格式正确
+            const chartData = nodeStats.map(item => ({
+                value: item.count,
+                name: item.label || '未知类型'
+            }));
+            
+            const option = {
+                title: {
+                    text: '实体类型分布',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b}: {c} ({d}%)'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: chartData.map(item => item.name)
+                },
+                series: [
+                    {
+                        name: '实体类型',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: '18',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: chartData
+                    }
+                ],
+                color: colors
+            };
+            
+            entityChart.setOption(option);
+        } catch (error) {
+            console.error('渲染实体图表时出错:', error);
+            showError('entity-stats', '渲染实体图表时出错');
+        }
+    }
+    
+    // 初始化关系图表
+    function initRelationChart(relationStats) {
+        if (!relationStats || relationStats.length === 0) {
+            showError('relation-stats', '没有关系数据可供显示');
+            return;
+        }
+        
+        try {
+            // 确保数据格式正确
+            const chartData = relationStats.map(item => ({
+                value: item.count,
+                name: item.type || '未知关系'
+            }));
+            
+            const option = {
+                title: {
+                    text: '关系类型分布',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b}: {c} ({d}%)'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: chartData.map(item => item.name)
+                },
+                series: [
+                    {
+                        name: '关系类型',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: '18',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: chartData
+                    }
+                ],
+                color: colors
+            };
+            
+            relationChart.setOption(option);
+        } catch (error) {
+            console.error('渲染关系图表时出错:', error);
+            showError('relation-stats', '渲染关系图表时出错');
+        }
+    }
+    
+    // 填充表格
+    function populateTables(nodeStats, relationStats) {
+        if (!nodeStats || !relationStats) return;
+        
+        try {
+            // 获取表格容器
+            const entityTableBody = document.getElementById('entity-table-body');
+            const relationTableBody = document.getElementById('relation-table-body');
+            
+            if (!entityTableBody || !relationTableBody) return;
+            
+            // 清空表格
+            entityTableBody.innerHTML = '';
+            relationTableBody.innerHTML = '';
+            
+            // 计算总数
+            const totalNodes = nodeStats.reduce((sum, item) => sum + item.count, 0);
+            const totalRelations = relationStats.reduce((sum, item) => sum + item.count, 0);
+            
+            // 填充实体表格
+            nodeStats.forEach(item => {
+                const percentage = (item.count / totalNodes * 100).toFixed(2);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.label || '未知类型'}</td>
+                    <td>${item.count.toLocaleString()}</td>
+                    <td>${percentage}%</td>
+                `;
+                entityTableBody.appendChild(row);
+            });
+            
+            // 填充关系表格
+            relationStats.forEach(item => {
+                const percentage = (item.count / totalRelations * 100).toFixed(2);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.type || '未知关系'}</td>
+                    <td>${item.count.toLocaleString()}</td>
+                    <td>${percentage}%</td>
+                `;
+                relationTableBody.appendChild(row);
+            });
+        } catch (error) {
+            console.error('填充表格时出错:', error);
+        }
+    }
+    
+    // 处理API错误显示
+    function showError(containerId, message) {
+        const container = document.getElementById(containerId);
+        if (container) {
+            container.innerHTML = `
+                <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+                    <div class="text-center">
+                        <i class="bi bi-exclamation-triangle-fill text-warning" style="font-size: 48px;"></i>
+                        <p class="mt-3">${message}</p>
+                        <button class="btn btn-sm btn-outline-primary mt-3" onclick="loadStatistics()">
+                            <i class="bi bi-arrow-repeat"></i> 重试
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    // 全屏功能
+    document.getElementById('entity-fullscreen').addEventListener('click', function() {
+        toggleFullscreen('entity-stats');
+    });
+    
+    document.getElementById('relation-fullscreen').addEventListener('click', function() {
+        toggleFullscreen('relation-stats');
+    });
+    
+    function toggleFullscreen(elementId) {
+        const element = document.getElementById(elementId);
+        
+        if (!document.fullscreenElement) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+    
+    // 监听全屏变化
+    document.addEventListener('fullscreenchange', function() {
+        if (document.fullscreenElement) {
+            const elementId = document.fullscreenElement.id;
+            if (elementId === 'entity-stats') {
+                entityChart.resize();
+            } else if (elementId === 'relation-stats') {
+                relationChart.resize();
+            }
+        } else {
+            if (entityChart) entityChart.resize();
+            if (relationChart) relationChart.resize();
+        }
+    });
+    
+    // 调整窗口大小时重新渲染图表
+    window.addEventListener('resize', function() {
+        if (entityChart) entityChart.resize();
+        if (relationChart) relationChart.resize();
+    });
+    
+    // 页面加载完成后自动加载统计数据
+    document.addEventListener('DOMContentLoaded', function() {
+        loadStatistics();
+    });
+</script>
+{% endblock %}
+
+<div class="stat-card bg-success text-white">
+    <h5><i class="bi bi-droplet-fill"></i> 土壤湿度监测</h5>
+    <div id="soil-moisture-chart" style="height: 200px"></div>
+</div>
+
+<div class="stat-card bg-warning text-dark">
+    <h5><i class="bi bi-thermometer-sun"></i> 生长温度趋势</h5>
+    <div id="temperature-trend-chart" style="height: 200px"></div>
+</div>
