@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - 农业知识图谱系统</title>
+    <link rel="stylesheet" href="/static/css/auth.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-sidebar">
+            <div class="app-logo">
+                <span class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M15.787 7.404a.61.61 0 0 1 .278-.53c.379-.242.584-.705.584-1.175a1.558 1.558 0 0 0-1.353-1.567.965.965 0 0 1-.627-1.608C15.1 2.016 15.099.75 13.808.75c-1.283 0-1.285 1.25-.865 1.754.372.497.371 1.153-.31 1.61-1.229.868-1.384 2.07-.542 2.93.267.272.732.295.901.597.171.333.173.734.146 1.092-.11.114.003.231.033.34-1.75.741-3.638 2.743-4.5 4.372-2.126-.87-4.661-1.158-6.171.782-.6.796-.8 1.683-.541 2.657-1.729 1.38-2.264 3.85-.982 5.383 1.97 2.355 6.275.633 8.916-1.123 3.113 1.054 6.789.798 7.824-1.755 1.064-2.572-.48-6.798-2.474-9.06.319-.294.641-.579.967-.854 1.587-1.324 2.37.249 3.075 1.412.466.742 1.345 2.002 2.194 1.333 1.29-.996-.998-2.524-1.408-3.113-.762-1.084-1.866-2.723-3.284-1.702zm-1.618 9.052c-.472.535-1.88.535-2.352 0-.471-.535-.471-1.403 0-1.939.471-.535 1.234-.535 1.705 0 .472.536.471 1.404 0 1.939zm1.704-2.226a.564.564 0 0 1-.8 0 .579.579 0 0 1 0-.818.564.564 0 0 1 .8 0 .579.579 0 0 1 0 .818z"/>
+                    </svg>
+                </span>
+                农业图谱
+            </div>
+            <h2 class="sidebar-title">加入我们的知识共享社区</h2>
+            <p class="sidebar-text">注册成为会员后，您可以访问完整的知识图谱资源，获取专业农业技术指导。</p>
+            
+            <div class="sidebar-features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="bi bi-clipboard-data"></i></div>
+                    <div class="feature-text">访问农业知识图谱资源库</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="bi bi-people"></i></div>
+                    <div class="feature-text">加入专家讨论组</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="bi bi-bookmark-star"></i></div>
+                    <div class="feature-text">收藏和分享农业知识</div>
+                </div>
+            </div>
+        </div>
+        <div class="auth-main">
+            <div class="auth-header">
+                <h2>创建新账户</h2>
+            </div>
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <div class="input-with-icon">
+                        <input type="text" id="username" name="username" class="form-control" required>
+                        <span class="input-icon">
+                            <i class="bi bi-person-fill"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码 (至少6位)</label>
+                    <div class="input-with-icon">
+                        <input type="password" id="password" name="password" class="form-control" required minlength="6">
+                        <span class="input-icon">
+                            <i class="bi bi-lock-fill"></i>
+                        </span>
+                        <button type="button" class="password-toggle" id="toggle-password">
+                            <i class="bi bi-eye-slash-fill"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">确认密码</label>
+                    <div class="input-with-icon">
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" required minlength="6">
+                        <span class="input-icon">
+                            <i class="bi bi-shield-lock-fill"></i>
+                        </span>
+                        <button type="button" class="password-toggle" id="toggle-confirm-password">
+                            <i class="bi bi-eye-slash-fill"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="message-area" class="message"></div>
+                <button type="submit" class="auth-button">注册</button>
+                <div class="auth-footer">
+                    <p>已有账户? <a href="/login" class="auth-link">立即登录</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('register-form');
+        const messageArea = document.getElementById('message-area');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        const togglePassword = document.getElementById('toggle-password');
+        const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+
+        // 密码显示/隐藏切换
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('bi-eye-fill');
+            this.querySelector('i').classList.toggle('bi-eye-slash-fill');
+        });
+
+        // 确认密码显示/隐藏切换
+        toggleConfirmPassword.addEventListener('click', function() {
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('bi-eye-fill');
+            this.querySelector('i').classList.toggle('bi-eye-slash-fill');
+        });
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            messageArea.style.display = 'none';
+            messageArea.className = 'message';
+
+            const username = document.getElementById('username').value;
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            // 基本验证
+            if (password !== confirmPassword) {
+                messageArea.textContent = '两次输入的密码不匹配。';
+                messageArea.classList.add('error');
+                messageArea.style.display = 'block';
+                return;
+            }
+            
+            if (password.length < 6) {
+                 messageArea.textContent = '密码长度不能少于6位。';
+                 messageArea.classList.add('error');
+                 messageArea.style.display = 'block';
+                 return;
+            }
+
+            try {
+                const response = await fetch('/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                const result = await response.json();
+
+                if (response.status === 201 && result.status === 'success') {
+                    messageArea.textContent = result.message + ' 即将跳转到登录页面...';
+                    messageArea.classList.add('success');
+                    setTimeout(() => {
+                         window.location.href = '/login'; 
+                    }, 2000);
+                } else {
+                    messageArea.textContent = '注册失败: ' + (result.message || '未知错误');
+                    messageArea.classList.add('error');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                messageArea.textContent = '注册请求出错，请检查网络或联系管理员。';
+                messageArea.classList.add('error');
+            }
+            messageArea.style.display = 'block';
+        });
+    </script>
+</body>
+</html> 

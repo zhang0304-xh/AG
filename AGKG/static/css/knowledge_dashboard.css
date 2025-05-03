@@ -1,0 +1,233 @@
+/* 知识图谱统计大屏样式 */
+
+:root {
+  /* 主题配色 */
+  --primary-color: #2e7d32; /* 匹配登录页面配色 */
+  --primary-light: #60ad5e;
+  --primary-dark: #005005;
+  --primary-gradient: linear-gradient(to right, #2e7d32, #388e3c);
+  --secondary-color: #f8f9fa;
+  --accent-color: #b7e4c7;
+  --white: #ffffff;
+  --text-primary: #2c3e50;
+  --text-secondary: #6c757d;
+  --error-color: #e57373;
+  --success-color: #2e7d32;
+  --border-color: #edf2f7;
+  --hover-color: #f0f0f0;
+  --shadow-sm: 0 1px 3px rgba(46, 125, 50, 0.05);
+  --shadow-md: 0 2px 4px rgba(46, 125, 50, 0.1);
+  --shadow-lg: 0 4px 12px rgba(46, 125, 50, 0.15);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition: all 0.2s ease-in-out;
+}
+
+body {
+  font-family: 'Microsoft YaHei', sans-serif; /* 匹配登录页面字体 */
+}
+
+/* 卡片样式 */
+.card {
+  background-color: var(--white);
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  height: 100%;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* 统计概览卡片 */
+.overview-card {
+  position: relative;
+}
+
+.overview-card .card-body {
+  display: flex;
+  align-items: center;
+}
+
+.overview-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.overview-content h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: var(--text-primary);
+}
+
+.overview-content .text-muted {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* 图表容器 */
+.chart-container {
+  width: 100%;
+  height: 350px;
+  position: relative;
+}
+
+/* 加载状态 */
+.loading-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+}
+
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* 表格样式 */
+.table-container {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-top: none;
+  font-size: 0.85rem;
+}
+
+.table td {
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  vertical-align: middle;
+  color: var(--text-primary);
+}
+
+/* 全屏模式 */
+.fullscreen-chart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  background-color: var(--white);
+  padding: 2rem;
+}
+
+.fullscreen-chart .chart-container {
+  height: calc(100vh - 100px);
+}
+
+.fullscreen-chart .fullscreen-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+}
+
+/* 图表颜色 */
+.entity-color {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+  .row.g-3 > div {
+    margin-bottom: 1rem;
+  }
+  
+  .chart-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .overview-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  
+  .overview-content h4 {
+    font-size: 1.2rem;
+  }
+  
+  .chart-container {
+    height: 250px;
+  }
+  
+  .card-body {
+    padding: 0.75rem;
+  }
+}
+
+/* 数据表格比率格式 */
+.ratio-badge {
+  background-color: rgba(46, 125, 50, 0.1);
+  color: var(--primary-color);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+}
+
+/* 自定义滚动条 */
+.table-container::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* 动画效果 */
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+} 

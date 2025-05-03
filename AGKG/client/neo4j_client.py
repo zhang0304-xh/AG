@@ -40,6 +40,17 @@ class Neo4jClient:
 
     def connect(self):
         """连接到Neo4j数据库"""
+        # 如果已经连接成功，直接返回True
+        if self.driver:
+            try:
+                # 快速测试连接是否有效
+                with self.driver.session() as session:
+                    session.run("RETURN 1")
+                return True
+            except Exception:
+                # 如果测试失败，继续尝试重新连接
+                self.driver = None
+        
         try:
             if not self.url or not self.username or not self.password:
                 logger.error("未提供连接信息")
@@ -578,12 +589,12 @@ class Neo4jClient:
             logger.error(f"获取节点邻居时出错: {e}")
             return [], []
 
-    def search_entities(self, query):
+    def search_entities(self, search_term):
         """
         搜索实体
         
         Args:
-            query (str): 搜索关键词
+            search_term (str): 搜索关键词
             
         Returns:
             list: 匹配的实体列表
@@ -595,7 +606,7 @@ class Neo4jClient:
         # 使用模糊匹配搜索实体
         cypher_query = """
         MATCH (n)
-        WHERE toLower(COALESCE(n.name, n.title, '')) CONTAINS toLower($query)
+        WHERE toLower(COALESCE(n.name, n.title, '')) CONTAINS toLower($search_term)
         RETURN ID(n) AS id, 
                COALESCE(n.name, n.title, '') AS name, 
                LABELS(n)[0] AS category
@@ -604,7 +615,7 @@ class Neo4jClient:
         
         with self.driver.session() as session:
             try:
-                result = session.run(cypher_query, query=query)
+                result = session.run(cypher_query, search_term=search_term)
                 entities = [
                     {
                         "id": record["id"],
@@ -887,4 +898,40 @@ class Neo4jClient:
                 return [record["label"] for record in result]
         except Exception as e:
             self.log.error(f"Error getting node labels: {str(e)}")
+            return []
+
+    def get_entity_id_by_name(self, entity_name):
+        """根据实体名称获取实体ID"""
+        if not self.driver:
+            self.connect()
+        try:
+            with self.driver.session() as session:
+                result = session.run("""
+            MATCH (n)
+            WHERE n.name = $entity_name
+            RETURN id(n) AS entity_id
+                """, entity_name=entity_name)
+                records = list(result)
+                if records:
+                    return records[0]["entity_id"]
+                return None
+        except Exception as e:
+            logger.error(f"根据名称 {entity_name} 查询实体ID时发生错误: {str(e)}")
+            return None
+
+    def get_entity_relations_by_id(self, entity_id):
+        """获取实体所有的关系类型"""
+        if not self.driver:
+            self.connect()
+        try:
+            with self.driver.session() as session:
+                result = session.run("""
+            MATCH (n)-[r]->()
+            WHERE id(n) = $entity_id
+            RETURN DISTINCT type(r) AS relation_type
+                """, entity_id=entity_id)
+                records = list(result)
+                return [record["relation_type"] for record in records]
+        except Exception as e:
+            logger.error(f"查询实体ID {entity_id} 的关系时发生错误: {str(e)}")
             return []

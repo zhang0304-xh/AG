@@ -1,7 +1,8 @@
 import logging
-from AGKG.client.neo4j_client import Neo4jClient
 from typing import Dict, List, Any, Optional
 import time
+from AGKG.core.client_manager import get_client_manager
+import json
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -20,17 +21,13 @@ class KnowledgeGraphService:
             max_retries: 连接数据库重试最大次数
             retry_delay: 重试延迟时间(秒)
         """
-        self.neo4j_client = Neo4jClient()
-
+        # 从客户端管理器获取Neo4j客户端实例
+        client_manager = get_client_manager()
+        self.neo4j_client = client_manager.get_neo4j_client()
         self.retry_delay = retry_delay
-        self.connected = False
+        self.connected = True  # Neo4jClient已经在其自身的__init__中连接了数据库
+        # 不需要再次调用connect()，避免重复连接和日志
         
-        # 尝试连接数据库，带重试机制
-        self.neo4j_client.connect()
-        self.connected = True
-        logger.info("成功连接到Neo4j数据库")
-
-
     def get_graph_visualization_data(self, entity_name: Optional[str] = None, limit: int = 10) -> Dict[str, Any]:
         """
         获取知识图谱可视化数据
@@ -222,3 +219,104 @@ class KnowledgeGraphService:
                 '关系类型分布': {},
                 'error': f"获取统计信息失败: {str(e)}"
             }
+
+    def get_entity_details(self, entity_name: str) -> Dict[str, Any]:
+        """获取实体的详细信息"""
+        try:
+            with self.neo4j_client.driver.session() as session:
+                # 查询实体的所有属性
+                result = session.run("""
+                MATCH (n)
+                WHERE n.name = $name
+                RETURN n.name as name,
+                       n.category as category,
+                       n.description as description,
+                       n.properties as properties,
+                       n.visit_count as visit_count,
+                       id(n) as id
+                LIMIT 1
+                """, name=entity_name)
+                
+                records = list(result)
+                if not records:
+                    return None
+                    
+                entity = records[0]
+                properties = entity.get("properties", {})
+                if isinstance(properties, str):
+                    try:
+                        properties = json.loads(properties)
+                    except:
+                        properties = {}
+                
+                # 更新访问次数
+                session.run("""
+                MATCH (n)
+                WHERE n.name = $name
+                SET n.visit_count = COALESCE(n.visit_count, 0) + 1
+                """, name=entity_name)
+                
+                return {
+                    "id": entity["id"],
+                    "name": entity["name"],
+                    "category": entity["category"],
+                    "description": entity.get("description", ""),
+                    "properties": properties,
+                    "visit_count": entity.get("visit_count", 0)
+                }
+                
+        except Exception as e:
+            logger.error(f"获取实体详情失败: {str(e)}")
+            return {"error": str(e)}
+
+    def get_entity_triplets(self, entity_name: str) -> Dict[str, Any]:
+        """获取与实体相关的三元组"""
+        try:
+            with self.neo4j_client.driver.session() as session:
+                # 查询与实体相关的所有三元组
+                result = session.run("""
+                MATCH (n)-[r]-(m)
+                WHERE n.name = $name
+                RETURN DISTINCT
+                    CASE 
+                        WHEN EXISTS((n)-[r]->(m)) THEN n.name
+                        ELSE m.name
+                    END as head,
+                    type(r) as relation,
+                    CASE 
+                        WHEN EXISTS((n)-[r]->(m)) THEN m.name
+                        ELSE n.name
+                    END as tail,
+                    CASE 
+                        WHEN EXISTS((n)-[r]->(m)) THEN n.category
+                        ELSE m.category
+                    END as head_category,
+                    CASE 
+                        WHEN EXISTS((n)-[r]->(m)) THEN m.category
+                        ELSE n.category
+                    END as tail_category
+                """, name=entity_name)
+                
+                records = list(result)
+                if not records:
+                    return None
+                    
+                triplets = []
+                for record in records:
+                    triplet = {
+                        "head": record["head"],
+                        "head_category": record["head_category"],
+                        "relation": record["relation"],
+                        "tail": record["tail"],
+                        "tail_category": record["tail_category"]
+                    }
+                    triplets.append(triplet)
+                
+                return {
+                    "triplets": triplets,
+                    "count": len(triplets)
+                }
+                
+        except Exception as e:
+            logger.error(f"获取实体三元组失败: {str(e)}")
+            return {"error": str(e)}

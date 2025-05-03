@@ -1,0 +1,190 @@
+/* 基础变量 */
+:root {
+    --primary-color: #2e7d32; /* 匹配登录页面配色 */
+    --primary-light: #60ad5e; /* 匹配登录页面配色 */
+    --primary-dark: #005005; /* 匹配登录页面配色 */
+    --primary-gradient: linear-gradient(to right, #2e7d32, #388e3c); /* 匹配登录页面渐变 */
+    --secondary-color: #f8f9fa;
+    --accent-color: #b7e4c7; /* 匹配登录页面配色 */
+    --white: #ffffff;
+    --text-primary: #2c3e50; /* 匹配登录页面配色 */
+    --text-secondary: #6c757d;
+    --border-color: #edf2f7; /* 匹配登录页面配色 */
+    --hover-color: #f0f0f0;
+    --shadow-sm: 0 1px 3px rgba(46, 125, 50, 0.05);
+    --shadow-md: 0 2px 4px rgba(46, 125, 50, 0.1);
+    --shadow-lg: 0 4px 12px rgba(46, 125, 50, 0.15);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --transition: all 0.2s ease-in-out;
+}
+
+/* 全局布局 */
+body {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Microsoft YaHei', sans-serif; /* 匹配登录页面字体 */
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    width: 250px;
+    background: var(--primary-gradient); /* 匹配登录页面渐变背景 */
+    color: white;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    padding-top: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.sidebar .navbar-brand {
+    color: white;
+    font-size: 1.5rem; /* 增大字体 */
+    padding: 0 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .navbar-nav {
+    width: 100%;
+    padding: 0;
+}
+
+.sidebar .nav-item {
+    width: 100%;
+    margin-bottom: 8px; /* 增加间距 */
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.9); /* 增加透明度，使文字更清晰 */
+    padding: 14px 18px; /* 增加内边距 */
+    margin: 2px 6px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    font-size: 1rem; /* 增大导航栏字体大小 */
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.sidebar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.25); /* 增加对比度 */
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem; /* 增大图标大小 */
+}
+
+/* 主内容区域样式 */
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    overflow-x: hidden;
+    background-color: var(--secondary-color);
+}
+
+/* 知识图谱页面特殊处理 */
+.graph-main-container {
+    padding: 0 !important;
+    height: calc(100vh - 30px);
+    margin: 0 !important;
+    position: relative;
+}
+
+/* 覆盖 Bootstrap 的 p-4 padding */
+.main-content.p-4 {
+    padding: 1.5rem !important; /* 增大内边距 */
+}
+
+.footer {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+}
+
+/* 全局卡片样式 */
+.card {
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 20px;
+    background-color: var(--white);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* 按钮样式 */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* 输入框统一样式 */
+.form-control {
+    border: 1px solid var(--border-color);
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        min-height: auto;
+    }
+    
+    .main-content, .footer {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    body {
+        flex-direction: column;
+    }
+    
+    .sidebar .nav-link {
+        font-size: 1.1rem; /* 移动设备上字体更大 */
+        padding: 15px 20px;
+    }
+} 

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='css/crop_qa.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="main-container centered">
+    <div class="title">农业知识智能问答</div>
+    <div class="subtitle">基于知识图谱的智能问答系统，可回答作物栽培、病虫害防治等相关问题</div>
+    
+    <div class="search-section">
+        <div class="search-box">
+            <input type="text" id="question-input" class="search-input" placeholder="请输入您的问题，例如：桃树常见病害有哪些？" autofocus>
+            <button id="submit-btn" class="search-button">
+                <i class="bi bi-search"></i>
+                <span>查询</span>
+            </button>
+        </div>
+        <div class="examples">
+            <div class="example-item example-link">桃树常见病害有哪些？</div>
+            <div class="example-item example-link">西红柿茎枯病如何防治？</div>
+            <div class="example-item example-link">水稻稻瘟病的发病条件是什么？</div>
+            <div class="example-item example-link">柑橘黄龙病有哪些症状？</div>
+        </div>
+    </div>
+    
+    <div id="result-section" style="display: none; width: 100%;">
+        <div id="loading" class="loading-container">
+            <div class="spinner"></div>
+            <div class="loading-text">正在思考中...</div>
+        </div>
+        
+        <div id="error-message" style="display: none;" class="error-container">
+            <div class="error-title">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span>查询失败</span>
+            </div>
+            <div id="error-text">服务器处理请求时出错，请稍后再试。</div>
+        </div>
+        
+        <div id="result-content" class="fade-in" style="display: none;">
+            <div class="result-card">
+                <div class="result-header">
+                    <h5>问题分析</h5>
+                    <div>
+                        <span class="analysis-tag">
+                            <i class="bi bi-question-circle"></i>
+                            问题类型：<span id="question-type">知识型问题</span>
+                        </span>
+                        <span class="analysis-tag">
+                            <i class="bi bi-tag"></i>
+                            核心实体：<span id="core-entities">桃树</span>
+                        </span>
+                        <span class="analysis-tag">
+                            <i class="bi bi-lightbulb"></i>
+                            意图：<span id="query-intent">询问病害信息</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="result-body">
+                    <div>
+                        <h5>您的问题</h5>
+                        <div id="question-display" class="mb-4">桃树常见病害有哪些？</div>
+                    </div>
+                    
+                    <div>
+                        <h5>回答</h5>
+                        <div id="answer-text" class="answer-content">
+                            正在加载回答...
+                        </div>
+                    </div>
+                    
+                    <div class="collapsible">
+                        <div class="collapsible-header">
+                            <span>查看知识图谱数据</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <div id="kg-triplets">
+                                正在加载相关知识...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/crop_qa.js') }}"></script>
+{% endblock %}

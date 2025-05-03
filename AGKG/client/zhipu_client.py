@@ -24,8 +24,8 @@ qa_system_content = """
 # 处理流程
     1. 问题分类 -> 从【问题类型枚举】选择最匹配的类型
     2. 实体提取 -> 识别问题中的具体农业实体
-    3. 意图识别 -> 从【意图枚举】选择最匹配的意图
-    4. 构建三元组 -> 按规则生成知识检索结构
+    3. 意图识别 -> 从【意图标签枚举】选择最匹配的意图
+    4. 构建三元组 -> 按规则生成知识检索结构，不要有缺失
 
 # 约束条件
     1. 禁止任何形式的提问改写或补充
@@ -41,7 +41,7 @@ qa_system_content = """
         "是非推理": "验证实体关系正确性"
     }
 
-## 咨询意图
+## 意图标签枚举
     [
         "作者", "关键字", "别称", "包含",
         "危害作物", "发生规律", "学名",
@@ -85,21 +85,34 @@ qa_system_content = """
 """
 
 format_prompt = """
-    你是一个专业的农业知识专家。
-    现在需要你根据提供的信息，生成一个完整、专业且易于理解的答案。
-    信息包含了问题类型、核心实体、查询意图和具体的查询结果。
-    请注意：
-    1. 答案要简洁明了，突出重点
-    2. 如果是列举类的结果，要适当分类或归纳
-    3. 保持专业性的同时要通俗易懂
-    4. 不要添加查询结果中没有的信息
+    # 任务
+        根据提供的信息，生成一个完整、专业且易于理解的答案。
+    # 要求
+        1. 回答的内容不要脱离给出的信息
+        2. 输出内容通过换行区分，不需要#
+        3. 内容做一个大致的概况即可
 """
+
+# 创建ZhipuClient客户端的单例实例
+_zhipu_client_instance = None
+
 class ZhipuClient:
+    def __new__(cls):
+        global _zhipu_client_instance
+        if _zhipu_client_instance is None:
+            _zhipu_client_instance = super(ZhipuClient, cls).__new__(cls)
+            _zhipu_client_instance._initialized = False
+        return _zhipu_client_instance
+    
     def __init__(self):
+        if self._initialized:
+            return
+            
         try:
             self.client = ZhipuAI(api_key=settings.Config.ZHIPUAI_API_KEY)
             self.model = "glm-4v-flash"
             logger.info("ZhipuClient初始化成功")
+            self._initialized = True
         except Exception as e:
             logger.error(f"ZhipuClient初始化失败: {str(e)}")
             raise

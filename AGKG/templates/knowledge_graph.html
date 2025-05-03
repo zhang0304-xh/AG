@@ -4,52 +4,200 @@
 <!-- 加载ECharts -->
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
 <link href="{{ url_for('static', filename='css/knowledge_graph.css') }}" rel="stylesheet">
+<style>
+    /* 直接在页面中覆盖 p-4 padding */
+    .main-content.p-4 {
+        padding: 0 !important;
+    }
+
+    /* 搜索框优化 */
+    .search-section .input-group {
+        border-radius: 0;
+        box-shadow: none;
+        overflow: visible;
+        background: transparent;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #search-input {
+        border: none;
+        border-radius: 0;
+        height: 40px;
+        font-size: 15px;
+        box-shadow: none;
+        outline: none;
+        transition: all 0.2s;
+        background: transparent;
+        padding-left: 0;
+    }
+    #search-input:focus {
+        box-shadow: none;
+        border-bottom: 1px solid #4e8cff;
+    }
+    #search-btn {
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        color: #4e8cff;
+        font-weight: normal;
+        transition: all 0.2s;
+        height: 40px;
+        font-size: 15px;
+        padding: 0 12px;
+    }
+    #search-btn:hover {
+        background: transparent;
+        color: #2563eb;
+    }
+
+    /* 图例框优化 */
+    .legend-section {
+        background: #f8fafc;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        padding: 16px 12px;
+        margin-top: 16px;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        color: #333;
+    }
+    .legend-color {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: inline-block;
+        border: 1.5px solid #e5e7eb;
+        margin-right: 6px;
+    }
+    .legend-item:not(:last-child) {
+        margin-bottom: 4px;
+    }
+    /* 滚动条美化 */
+    .legend-container::-webkit-scrollbar {
+        width: 6px;
+        background: #f1f1f1;
+    }
+    .legend-container::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 3px;
+    }
+
+    .node-info-section {
+        /* 移除滚动和高度限制 */
+        max-height: none;
+        overflow: visible;
+    }
+
+    .node-details-container {
+        max-height: 500px;  /* 或你想要的高度 */
+        overflow-y: auto;
+    }
+
+    .control-panel {
+        background: #f8fafc;
+        border-radius: 18px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        padding: 0;
+        overflow: hidden;
+        /* 可选：宽度自适应或固定 */
+        max-width: 440px;
+        min-width: 340px;
+        font-size: 15px;
+    }
+
+    .control-section {
+        padding: 18px 24px 12px 24px;  /* 上右下左，间距统一 */
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        font-size: 15px;
+        color: #333;
+    }
+    .control-section:last-child {
+        border-bottom: none;
+    }
+
+    .section-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 14px;
+        letter-spacing: 0.5px;
+    }
+
+    /* 禁止大卡片和外层出现滚动条 */
+    .control-panel,
+    .floating-control-panel,
+    .graph-layout {
+        overflow: visible !important;
+    }
+
+    /* 禁止页面横向滚动条 */
+    html, body {
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    .node-info-table,
+    .legend-item {
+        font-size: 15px;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="row g-3">
-    <!-- 主图谱区域 -->
-    <div class="col-lg-9">
-        <div class="card h-100">
-            <div class="card-body position-relative p-2">
-                <!-- 图谱控制按钮 -->
-                <div class="position-absolute" style="right: 10px; top: 10px; z-index: 100;">
-                    <button id="zoom-in" class="btn btn-sm btn-outline-secondary" title="放大">
-                        <i class="bi bi-zoom-in"></i>
-                    </button>
-                    <button id="zoom-out" class="btn btn-sm btn-outline-secondary" title="缩小">
-                        <i class="bi bi-zoom-out"></i>
-                    </button>
-                    <button id="reset-graph" class="btn btn-sm btn-outline-secondary" title="重置">
-                        <i class="bi bi-arrow-counterclockwise"></i>
-                    </button>
-                </div>
-
-                <!-- 图谱容器 -->
+<div class="container-fluid graph-main-container">
+    <div class="graph-layout">
+        <!-- 单一框架 - 图谱作为底层 -->
+        <div class="unified-panel">
+            <!-- 图谱容器（底层） -->
+            <div class="graph-panel">
                 <div id="graph-container" class="graph-container"></div>
-
+                
                 <!-- 加载遮罩 -->
                 <div id="loading-overlay" class="loading-overlay">
-                    <div class="spinner-border" style="color: var(--primary-green); width: 2rem; height: 2rem;" role="status">
+                    <div class="spinner-border" role="status">
                         <span class="visually-hidden">加载中...</span>
                     </div>
                     <p class="mt-2 small text-muted">正在加载知识图谱数据...</p>
                 </div>
-
+                
                 <!-- 错误消息 -->
                 <div id="error-message" class="error-message alert alert-danger" style="display: none;"></div>
             </div>
-        </div>
-    </div>
-
-    <!-- 节点信息区域 -->
-    <div class="col-lg-3">
-        <div class="card h-100">
-            <div class="card-body">
-                <div id="info-content" class="info-content">
-                    <div class="text-center p-3">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2493/2493093.png" alt="选择节点" style="width: 40px; opacity: 0.2;" class="mb-2">
-                        <p class="text-muted small">请在图谱中选择一个节点查看详细信息</p>
+            
+            <!-- 控制面板（悬浮层） -->
+            <div class="floating-control-panel">
+                <div class="control-panel">
+                    <div class="control-section search-section">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="section-title mb-0">搜索实体</h6>
+                            <button id="reset-graph" class="btn btn-sm btn-outline-secondary" title="重置图谱">
+                                <i class="bi bi-arrow-counterclockwise"></i> 重置图谱
+                            </button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="search-input" class="form-control" placeholder="输入实体名称...">
+                            <button id="search-btn" class="btn btn-primary">
+                                <i class="bi bi-search"></i> 搜索
+                            </button>
+                        </div>
+                    </div>
+                    <div class="control-section legend-section">
+                        <h6 class="section-title">图谱图例</h6>
+                        <div class="legend-container">
+                            <!-- 图例项目将由JS动态生成 -->
+                        </div>
+                    </div>
+                    <div class="control-section node-info-section">
+                        <div id="node-info-details" class="node-details-container">
+                            <p class="text-muted">请点击节点查看详细信息</p>
+                        </div>
                     </div>
                 </div>
             </div>

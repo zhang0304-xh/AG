@@ -132,6 +132,64 @@ def get_statistics():
         # 返回空数据
         return jsonify({'error': str(e), 'total_nodes': 0, 'total_relations': 0, 'entities': [], 'relations': []})
 
+@knowledge_graph_api.route('/api/knowledge_graph/entity/<entity_name>', methods=['GET'])
+def get_entity_details(entity_name):
+    """
+    获取实体详情
+    
+    Path Parameters:
+        entity_name: 实体名称
+        
+    Returns:
+        JSON对象，包含实体的详细信息和相关的三元组
+    """
+    try:
+        # 使用服务获取实体详情
+        details = graph_service.get_entity_details(entity_name)
+        
+        # 检查是否有错误信息
+        if not details:
+            logger.warning(f"找不到实体: {entity_name}")
+            return jsonify({'error': '请求的实体不存在'}), 404
+            
+        if 'error' in details:
+            logger.warning(f"获取实体详情有错误: {details['error']}")
+            return jsonify(details), 400
+            
+        return jsonify(details)
+    except Exception as e:
+        logger.error(f"获取实体详情失败: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+@knowledge_graph_api.route('/api/knowledge_graph/entity/<entity_name>/triplets', methods=['GET'])
+def get_entity_triplets(entity_name):
+    """
+    获取与实体相关的三元组
+    
+    Path Parameters:
+        entity_name: 实体名称
+        
+    Returns:
+        JSON对象，包含与实体相关的三元组
+    """
+    try:
+        # 使用服务获取实体相关的三元组
+        triplets = graph_service.get_entity_triplets(entity_name)
+        
+        # 检查是否有错误信息
+        if not triplets:
+            logger.warning(f"找不到实体相关的三元组: {entity_name}")
+            return jsonify({'error': '找不到相关的知识'}), 404
+            
+        if 'error' in triplets:
+            logger.warning(f"获取实体三元组有错误: {triplets['error']}")
+            return jsonify(triplets), 400
+            
+        return jsonify(triplets)
+    except Exception as e:
+        logger.error(f"获取实体三元组失败: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
 def init_app(app):
     """注册API蓝图到应用"""
     app.register_blueprint(knowledge_graph_api) 

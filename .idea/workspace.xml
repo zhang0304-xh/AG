@@ -5,27 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10c895b-820e-4a6f-b150-3b2c328f5495" name="更改" comment="初始化">
+      <change afterPath="$PROJECT_DIR$/AGKG/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AGKG/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AGKG/templates/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AGKG/transE_data/entity_embeddings.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AGKG/transE_data/final_embeddings.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AGKG/transE_data/relation_embeddings.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/api/knowledge_graph_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/api/knowledge_graph_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/api/qa_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/api/qa_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/client/neo4j_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/neo4j_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/tranE_client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/ttt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/client/transE_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/transE_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/client/zhipu_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/zhipu_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/repository/db/record.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/repository/db/record.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/router.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/services/knowledge_graph_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/services/knowledge_graph_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/services/knowledge_search.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/services/qa_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/services/qa_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/css/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/services/search_history_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/services/search_history_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/static/css/crop_qa.css" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/css/crop_qa.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/static/css/knowledge_dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/css/knowledge_dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/static/css/knowledge_graph.css" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/css/knowledge_graph.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/static/js/crop_qa.js" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/js/crop_qa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/static/js/knowledge_graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/js/knowledge_graph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/templates/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/templates/knowledge_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/knowledge_dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/templates/knowledge_graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/knowledge_graph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +78,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Flask 服务器.AGKG.executor": "Run",
     "Flask 服务器.Flask (AGKG/app.py).executor": "Run",
     "Python.babel_net_client.executor": "Run",
     "Python.entity_embedding.executor": "Run",
@@ -77,26 +86,31 @@
     "Python.neo4j.executor": "Run",
     "Python.neo4j_client (1).executor": "Run",
     "Python.neo4j_client.executor": "Run",
+    "Python.search_history_service.executor": "Run",
     "Python.test.executor": "Run",
     "Python.tranE_client (1).executor": "Run",
     "Python.tranE_client.executor": "Run",
     "Python.ttt.executor": "Run",
+    "Python.user_service.executor": "Debug",
     "Python.zhipu_client (1).executor": "Run",
     "Python.zhipu_client.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/Python/AGKG",
+    "last_opened_file_path": "E:/Python/AGKG/AGKG/templates",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Python\AGKG\AGKG\templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python\AGKG\AGKG\transE_data" />
       <recent name="C:\Users\zhang\Desktop\AGKG\AGKG\transE_data" />
@@ -105,52 +119,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Flask 服务器.Flask (AGKG/app.py)">
-    <configuration name="babel_net_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="AGKG" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AGKG/client" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AGKG/client/babel_net_client.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="entity_embedding" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="AGKG" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/script" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/script/entity_embedding.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="entity_embedding" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AGKG" />
       <option name="ENV_FILES" value="" />
@@ -220,7 +188,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="search_history_service" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AGKG" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -229,35 +197,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/script" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AGKG/services" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/script/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="tranE_client" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AGKG" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AGKG/client" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AGKG/client/tranE_client.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AGKG/services/search_history_service.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -335,7 +280,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ttt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="user_service" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AGKG" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -344,12 +289,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AGKG/client" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AGKG/services" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AGKG/client/ttt.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AGKG/services/user_service.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -381,29 +326,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="zhipu_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="AGKG" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/client" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/client/zhipu_client.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="AGKG" type="Python.FlaskServer">
       <module name="AGKG" />
       <option name="target" value="$PROJECT_DIR$/AGKG/app.py" />
@@ -411,7 +333,11 @@
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="FLASK_DEBUG" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="AGKG" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -459,6 +385,9 @@
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="FLASK_DEBUG" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -468,13 +397,21 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Flask 服务器.AGKG" />
+      <item itemvalue="Flask 服务器.Flask (AGKG/app.py)" />
+      <item itemvalue="Python.search_history_service" />
+      <item itemvalue="Python.user_service" />
+      <item itemvalue="Python.neo4j_client" />
+      <item itemvalue="Python.zhipu_client (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Flask 服务器.Flask (AGKG/app.py)" />
+        <item itemvalue="Python.user_service" />
+        <item itemvalue="Python.search_history_service" />
         <item itemvalue="Python.neo4j_client" />
         <item itemvalue="Python.zhipu_client (1)" />
-        <item itemvalue="Python.ttt" />
-        <item itemvalue="Python.tranE_client" />
       </list>
     </recent_temporary>
   </component>
@@ -501,7 +438,7 @@
       <workItem from="1742019562340" duration="2729000" />
       <workItem from="1742481026765" duration="34760000" />
       <workItem from="1745596132855" duration="29438000" />
-      <workItem from="1746264643470" duration="13559000" />
+      <workItem from="1746264643470" duration="46015000" />
     </task>
     <task id="LOCAL-00001" summary="初始化">
       <option name="closed" value="true" />
@@ -543,7 +480,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746266247262</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="初始化">
+      <option name="closed" value="true" />
+      <created>1746281586066</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746281586066</updated>
+    </task>
+    <task id="LOCAL-00007" summary="初始化">
+      <option name="closed" value="true" />
+      <created>1746288387948</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746288387948</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -564,18 +517,32 @@
     <MESSAGE value="初始化" />
     <option name="LAST_COMMIT_MESSAGE" value="初始化" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/AGKG/services/user_service.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AGKG$neo4j_client__1_.coverage" NAME="neo4j_client (1) 覆盖结果" MODIFIED="1741422344571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/client" />
     <SUITE FILE_PATH="coverage/AGKG$ttt.coverage" NAME="ttt 覆盖结果" MODIFIED="1742665615909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
+    <SUITE FILE_PATH="coverage/AGKG$user_service.coverage" NAME="user_service 覆盖结果" MODIFIED="1746303865171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/services" />
     <SUITE FILE_PATH="coverage/AGKG$babel_net_client.coverage" NAME="babel_net_client 覆盖结果" MODIFIED="1741883247831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
+    <SUITE FILE_PATH="coverage/AGKG$search_history_service.coverage" NAME="search_history_service 覆盖结果" MODIFIED="1746301849578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/services" />
     <SUITE FILE_PATH="coverage/AGKG$test.coverage" NAME="test 覆盖结果" MODIFIED="1742636804243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/script" />
     <SUITE FILE_PATH="coverage/AGKG$neo4j.coverage" NAME="neo4j 覆盖结果" MODIFIED="1741421829012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/client" />
     <SUITE FILE_PATH="coverage/AGKG$neo4j_client.coverage" NAME="neo4j_client 覆盖结果" MODIFIED="1745936417340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
     <SUITE FILE_PATH="coverage/AGKG$tranE_client.coverage" NAME="tranE_client 覆盖结果" MODIFIED="1742637239140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
     <SUITE FILE_PATH="coverage/AGKG$zhipu_client.coverage" NAME="zhipu_client 覆盖结果" MODIFIED="1741422853784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/client" />
     <SUITE FILE_PATH="coverage/AGKG$knowledge_search.coverage" NAME="knowledge_search 覆盖结果" MODIFIED="1741417889942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/services" />
-    <SUITE FILE_PATH="coverage/AGKG$Flask__AGKG_app_py_.coverage" NAME="Flask (AGKG/app.py) 覆盖结果" MODIFIED="1746281294693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AGKG$Flask__AGKG_app_py_.coverage" NAME="Flask (AGKG/app.py) 覆盖结果" MODIFIED="1746348619355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AGKG$zhipu_client__1_.coverage" NAME="zhipu_client (1) 覆盖结果" MODIFIED="1745124935315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
+    <SUITE FILE_PATH="coverage/AGKG$AGKG.coverage" NAME="AGKG 覆盖结果" MODIFIED="1746283198996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AGKG$tranE_client__1_.coverage" NAME="tranE_client (1) 覆盖结果" MODIFIED="1741437380650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AGKG/client" />
     <SUITE FILE_PATH="coverage/AGKG$entity_embedding.coverage" NAME="entity_embedding 覆盖结果" MODIFIED="1741786580712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/script" />
   </component>
