@@ -167,9 +167,9 @@
 <body>
     <!-- 左侧导航栏 -->
     <nav class="sidebar">
-        <a class="navbar-brand" href="{{ url_for('main_routes.index') }}">
-            <i class="bi bi-tree"></i> 农业知识图谱系统
-        </a>
+        <div style="text-align: center;">
+            <h1> 农业知识图谱系统 </h1>
+        </div>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link {% if request.endpoint == 'main_routes.index' %}active{% endif %}" href="{{ url_for('main_routes.index') }}">
@@ -253,21 +253,11 @@
 </html>
 <style>
     :root {
-        --primary-color: #28a745;  /* 农业绿替代原蓝色 */
+        --primary-color: #232524;  /* 农业绿替代原蓝色 */
         --secondary-color: #ffc107; /* 丰收黄 */
     }
 
-    .sidebar {
-        background-color: var(--primary-color);
-        background-image: linear-gradient(rgba(255,255,255,0.1), rgba(0,0,0,0.1)),
-                         url('/static/images/agriculture-pattern.png');
-    }
 
-    .navbar-brand {
-        font-size: 1.5rem;
-        padding: 15px;
-        background: url('/static/images/wheat-icon.svg') no-repeat left center/30px;
-        padding-left: 40px;
-    }
+
 </style>
 <mcfile name="base.html" path="e:\\Python\\AGKG\\AGKG\\templates\\base.html"></mcfile>

@@ -603,7 +603,7 @@ class Neo4jClient:
             logger.error(f"获取实体和邻居时出错: {e}")
             return self._get_mock_tree_data(entity_name)
 
-    def get_entity_neighbors(self, node_id, limit=10):
+    def get_entity_neighbors_by_id(self, node_id, limit=10):
         """
         获取指定节点ID的邻居节点和关系
         

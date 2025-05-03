@@ -99,28 +99,76 @@ class KnowledgeGraphService:
             logger.error(f"搜索实体失败: {str(e)}")
             return {'nodes': [], 'links': [], 'error': f"搜索失败: {str(e)}"}
     
-    def expand_node(self, node_id: str) -> Dict[str, Any]:
+    def expand_node(self, node_id: str, limit: int = 10) -> Dict[str, Any]:
         """
         展开节点，获取相关实体
-        
-        Args:
-            node_id: 要展开的节点ID
-            
-        Returns:
-            dict: 包含相关的节点和连接
         """
-        if not self.connected:
-            logger.warning("未连接到Neo4j数据库，无法展开节点")
-            return {'nodes': [], 'links': [], 'error': '数据库连接失败'}
-        
         try:
+            # 添加类型转换处理
+            node_id = int(node_id)  # 将字符串ID转换为整数
             logger.info(f"展开节点: {node_id}")
-            # 获取节点的邻居，限制为10个
-            nodes, links = self.neo4j_client.get_entity_neighbors(node_id, limit=10)
+            nodes, links = self.neo4j_client.get_entity_neighbors_by_id(node_id, limit)
             return self._format_graph_data(nodes, links)
+        except ValueError as e:
+            logger.error(f"节点ID格式错误: {node_id}")
+            return {'nodes': [], 'links': [], 'error': f"无效的节点ID格式: {node_id}"}
         except Exception as e:
             logger.error(f"展开节点失败: {str(e)}")
             return {'nodes': [], 'links': [], 'error': f"展开失败: {str(e)}"}
+    
+    def _format_graph_data(self, nodes, links):
+        # 格式化节点时统一转换为字符串
+        formatted_nodes = []
+        for node in nodes:
+            formatted_node = {
+                'id': str(node.get('id')),  # 确保转换为字符串
+                'name': node.get('name', '未命名节点'),
+                'symbolSize': 20,
+                'category': node.get('category', 0)
+            }
+            
+            # 添加额外属性
+            properties = node.get('properties', {})
+            formatted_node['properties'] = properties
+            
+            # 添加描述文本
+            description = properties.get('description', '')
+            if description:
+                formatted_node['description'] = description
+            
+            formatted_nodes.append(formatted_node)
+        
+        # 格式化连接
+        formatted_links = []
+        for link in links:
+            formatted_link = {
+                'source': str(link.get('source')),
+                'target': str(link.get('target')),
+                'value': link.get('name', '')
+            }
+            formatted_links.append(formatted_link)
+        
+        # 提取类别
+        categories = []
+        category_set = set()
+        
+        for node in nodes:
+            category = node.get('category')
+            if category is not None and category not in category_set:
+                category_set.add(category)
+                categories.append({
+                    'name': category
+                })
+        
+        # 如果没有类别，添加一个默认类别
+        if not categories:
+            categories.append({ 'name': '默认类别' })
+        
+        return {
+            'nodes': formatted_nodes,
+            'links': formatted_links,
+            'categories': categories
+        }
     
     def get_statistics(self) -> Dict[str, Any]:
         """
@@ -183,68 +231,3 @@ class KnowledgeGraphService:
                 '关系类型分布': {},
                 'error': f"获取统计信息失败: {str(e)}"
             }
-    
-    def _format_graph_data(self, nodes, links):
-        """
-        将节点和连接格式化为前端所需的格式
-        
-        Args:
-            nodes: 节点列表
-            links: 连接列表
-            
-        Returns:
-            dict: 格式化后的图谱数据
-        """
-        # 格式化节点
-        formatted_nodes = []
-        for node in nodes:
-            formatted_node = {
-                'id': str(node.get('id')),
-                'name': node.get('name', '未命名节点'),
-                'symbolSize': 20,  # 统一节点大小
-                'value': 1,
-                'category': node.get('category', 0)
-            }
-            
-            # 添加额外属性
-            properties = node.get('properties', {})
-            formatted_node['properties'] = properties
-            
-            # 添加描述文本
-            description = properties.get('description', '')
-            if description:
-                formatted_node['description'] = description
-            
-            formatted_nodes.append(formatted_node)
-        
-        # 格式化连接
-        formatted_links = []
-        for link in links:
-            formatted_link = {
-                'source': str(link.get('source')),
-                'target': str(link.get('target')),
-                'value': link.get('label', '')
-            }
-            formatted_links.append(formatted_link)
-        
-        # 提取类别
-        categories = []
-        category_set = set()
-        
-        for node in nodes:
-            category = node.get('category')
-            if category is not None and category not in category_set:
-                category_set.add(category)
-                categories.append({
-                    'name': category
-                })
-        
-        # 如果没有类别，添加一个默认类别
-        if not categories:
-            categories.append({ 'name': '默认类别' })
-        
-        return {
-            'nodes': formatted_nodes,
-            'links': formatted_links,
-            'categories': categories
-        }
