@@ -12,7 +12,7 @@ class KnowledgeGraphService:
     知识图谱服务类，处理知识图谱相关的业务逻辑
     """
     
-    def __init__(self, max_retries=3, retry_delay=1):
+    def __init__(self, retry_delay=1):
         """
         初始化知识图谱服务
         
@@ -21,25 +21,16 @@ class KnowledgeGraphService:
             retry_delay: 重试延迟时间(秒)
         """
         self.neo4j_client = Neo4jClient()
-        self.max_retries = max_retries
+
         self.retry_delay = retry_delay
         self.connected = False
         
         # 尝试连接数据库，带重试机制
-        for attempt in range(1, self.max_retries + 1):
-            try:
-                logger.info(f"尝试连接Neo4j数据库 (尝试 {attempt}/{self.max_retries})")
-                self.neo4j_client.connect()
-                self.connected = True
-                logger.info("成功连接到Neo4j数据库")
-                break
-            except Exception as e:
-                logger.warning(f"连接Neo4j数据库失败 (尝试 {attempt}/{self.max_retries}): {str(e)}")
-                if attempt < self.max_retries:
-                    time.sleep(self.retry_delay)
-                else:
-                    logger.error(f"无法连接到Neo4j数据库，已达到最大重试次数: {str(e)}")
-    
+        self.neo4j_client.connect()
+        self.connected = True
+        logger.info("成功连接到Neo4j数据库")
+
+
     def get_graph_visualization_data(self, entity_name: Optional[str] = None, limit: int = 10) -> Dict[str, Any]:
         """
         获取知识图谱可视化数据

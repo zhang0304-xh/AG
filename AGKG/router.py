@@ -6,7 +6,7 @@ main_routes = Blueprint('main_routes', __name__)
 @main_routes.route('/')
 def index():
     """主页，显示问答页面"""
-    return render_template('index.html')
+    return render_template('crop_qa.html')
 
 @main_routes.route('/knowledge-graph')
 def knowledge_graph():

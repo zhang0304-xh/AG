@@ -120,12 +120,17 @@ def get_statistics():
             logger.warning(f"获取统计信息有错误: {statistics['error']}")
             # 移除错误消息并返回其他数据
             error_message = statistics.pop('error')
+            # 如果数据库连接失败，返回空数据
+            if "数据库连接失败" in error_message:
+                logger.info("数据库连接失败")
+                return jsonify({'error': error_message, 'total_nodes': 0, 'total_relations': 0, 'entities': [], 'relations': []})
             return jsonify({'error': error_message, **statistics})
             
         return jsonify(statistics)
     except Exception as e:
         logger.error(f"获取统计信息失败: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        # 返回空数据
+        return jsonify({'error': str(e), 'total_nodes': 0, 'total_relations': 0, 'entities': [], 'relations': []})
 
 def init_app(app):
     """注册API蓝图到应用"""

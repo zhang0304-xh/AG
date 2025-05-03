@@ -2,12 +2,14 @@
 
 /* 基础样式 */
 body {
-    font-family: "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     height: 100vh;
     overflow: hidden;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* 页面布局 */
@@ -18,91 +20,103 @@ body {
 }
 
 /* 侧边栏 */
-
-
 .left-sidebar {
-    padding: 15px;
+    padding: 24px;
+    background-color: #ffffff;
+    border-right: 1px solid #eeeeee;
 }
 
 .right-sidebar {
-    padding: 15px;
-    border-left: 1px solid #eee;
+    padding: 24px;
+    border-left: 1px solid #eeeeee;
+    background-color: #ffffff;
 }
 
 .sidebar-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: #333;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 12px;
 }
 
 .sidebar-section {
-    margin-bottom: 20px;
+    margin-bottom: 32px;
 }
 
 /* 搜索框 */
 .search-box {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .search-input {
     width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
+    padding: 10px 12px;
+    border: 1px solid #e6e6e6;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+}
+
+.search-input:focus {
+    border-color: #4c956c;
+    outline: none;
+    box-shadow: none;
 }
 
 /* 类别过滤器 */
 .category-filters {
-    max-height: 180px;
+    max-height: 200px;
     overflow-y: auto;
-    padding-right: 5px;
+    padding-right: 8px;
 }
 
 .category-item {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
 }
 
 .category-checkbox {
-    margin-right: 5px;
+    margin-right: 8px;
+    accent-color: #4c956c;
 }
 
 /* 统计信息 */
 .statistics-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
+    margin-top: 8px;
 }
 
 .statistics-item {
-    background: #f8f9fa;
+    background: #f8f8f8;
     border-radius: 4px;
-    padding: 10px;
+    padding: 12px;
     text-align: center;
-    flex: 1 0 calc(50% - 4px);
+    flex: 1 0 calc(50% - 6px);
+    border: none;
 }
 
 .stat-value {
-    font-size: 18px;
-    font-weight: bold;
-    color: #3273dc;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
 }
 
 .stat-label {
-    font-size: 12px;
-    color: #777;
+    font-size: 0.8rem;
+    color: #757575;
+    margin-top: 4px;
 }
 
 /* 路径查找 */
 .path-finder {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #f0f0f0;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #eeeeee;
 }
 
 /* 主内容区 */
@@ -116,9 +130,9 @@ body {
 
 /* 图谱控制栏 */
 .graph-controls {
-    padding: 10px 15px;
-    background: white;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 12px 16px;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
     display: flex;
     align-items: center;
     z-index: 10;
@@ -126,6 +140,35 @@ body {
 
 .btn {
     transition: none; /* 移除按钮过渡效果 */
+}
+
+.btn-primary {
+    background-color: #4c956c;
+    border-color: #4c956c;
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+.btn-primary:hover {
+    background-color: #3a3a3a;
+    border-color: #3a3a3a;
+}
+
+.btn-secondary {
+    background-color: #f8f8f8;
+    border-color: #f8f8f8;
+    color: #1a1a1a;
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
 }
 
 /* 图谱容器 */
@@ -143,7 +186,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -152,8 +195,9 @@ body {
 }
 
 .loading-text {
-    margin-top: 15px;
-    color: #555;
+    margin-top: 16px;
+    color: #1a1a1a;
+    font-size: 0.9rem;
 }
 
 /* 错误消息 */
@@ -162,30 +206,35 @@ body {
     top: 60px;
     left: 50%;
     transform: translateX(-50%);
-    background: #fff5f7;
-    color: #cd0930;
-    padding: 10px 15px;
+    background: #fff0f0;
+    color: #e53935;
+    padding: 12px 16px;
     border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     z-index: 1001;
     max-width: 80%;
     display: none;
+    font-size: 0.9rem;
 }
 
 /* 节点信息 */
 .info-card {
-    padding: 15px;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .info-section {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .info-subtitle {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #555;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #1a1a1a;
 }
 
 .info-prop-list {
@@ -196,19 +245,19 @@ body {
 
 .info-prop-list li {
     display: flex;
-    margin-bottom: 5px;
-    font-size: 14px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
 }
 
 .info-label {
-    color: #666;
-    font-weight: 500;
-    margin-right: 5px;
+    color: #757575;
+    font-weight: 400;
+    margin-right: 8px;
     min-width: 70px;
 }
 
 .info-actions {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 /* 禁用所有元素的悬停效果 */
@@ -225,6 +274,25 @@ a:hover, button:hover, .btn:hover {
 * {
     animation-duration: 0s !important;
     transition-duration: 0s !important;
+}
+
+/* 知识图谱容器 */
+.knowledge-graph-container {
+    padding: 0;
+    background-color: #ffffff;
+    height: 100%;
+    border: none;
+}
+
+.knowledge-graph-container .card.h-100 {
+    border: none;
+    box-shadow: none;
+}
+
+.graph-container {
+    background-color: #ffffff;
+    border: none;
+    height: 100%;
 }
 
 /* 响应式设计 */
@@ -248,158 +316,15 @@ a:hover, button:hover, .btn:hover {
     }
     
     .graph-container {
-        height: 50vh;
+        height: 60vh;
     }
-}
-
-/* 知识图谱专用样式 */
-
-.knowledge-graph-container {
-    padding: 15px;
-    height: calc(100vh - 150px);
-}
-
-/* 确保图谱容器有足够高度 */
-.knowledge-graph-container .card.h-100 {
-    height: calc(100vh - 180px) !important;
-}
-
-/* 图谱容器 */
-.graph-container {
-    width: 100%;
-    height: 100%;
-    min-height: 500px;
-    background-color: #fff;
-}
-
-/* 类别过滤器 */
-.category-filters {
-    max-height: 180px;
-    overflow-y: auto;
-    padding-right: 5px;
-}
-
-.category-item {
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-}
-
-.category-checkbox {
-    margin-right: 5px;
-}
-
-/* 统计信息 */
-.statistics-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.statistics-item {
-    background: #f8f9fa;
-    border-radius: 4px;
-    padding: 10px;
-    text-align: center;
-    flex: 1 0 calc(50% - 4px);
-}
-
-.stat-value {
-    font-size: 18px;
-    font-weight: bold;
-    color: #3273dc;
-}
-
-.stat-label {
-    font-size: 12px;
-    color: #777;
-}
-
-/* 节点信息 */
-.info-card {
-    padding: 15px;
-}
-
-.info-section {
-    margin-bottom: 15px;
-}
-
-.info-subtitle {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.info-prop-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.info-prop-list li {
-    display: flex;
-    margin-bottom: 5px;
-    font-size: 14px;
-}
-
-.info-label {
-    color: #666;
-    font-weight: 500;
-    margin-right: 5px;
-    min-width: 70px;
-}
-
-/* 加载遮罩 */
-.loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.loading-text {
-    margin-top: 15px;
-    color: #555;
-}
-
-/* 错误消息 */
-.error-message {
-    position: absolute;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff5f7;
-    color: #cd0930;
-    padding: 10px 15px;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
-    max-width: 80%;
-    display: none;
-}
-
-/* 禁用所有元素的悬停效果 */
-.graph-container * {
-    transition: none !important;
-    animation-duration: 0s !important;
-    transition-duration: 0s !important;
-}
-
-/* 响应式样式调整 */
-@media (max-width: 992px) {
+    
     .knowledge-graph-container {
-        padding: 10px;
+        margin-top: 0;
+        padding: 0;
     }
     
     .graph-container {
-        min-height: 400px;
+        height: 50vh;
     }
 } 
