@@ -5,35 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10c895b-820e-4a6f-b150-3b2c328f5495" name="更改" comment="初始化">
-      <change afterPath="$PROJECT_DIR$/AGKG/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AGKG/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AGKG/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AGKG/transE_data/entity_embeddings.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AGKG/transE_data/final_embeddings.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AGKG/transE_data/relation_embeddings.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/api/knowledge_graph_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/api/knowledge_graph_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/api/qa_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/api/qa_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/neo4j_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/neo4j_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/transE_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/transE_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/zhipu_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/zhipu_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/repository/db/record.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/repository/db/record.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/services/knowledge_graph_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/services/knowledge_graph_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/services/qa_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/services/qa_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/services/search_history_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/services/search_history_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/css/crop_qa.css" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/css/crop_qa.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/css/knowledge_dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/css/knowledge_dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/css/knowledge_graph.css" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/css/knowledge_graph.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/js/crop_qa.js" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/js/crop_qa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/js/knowledge_graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/js/knowledge_graph.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AGKG/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/templates/knowledge_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/knowledge_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/templates/knowledge_graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/knowledge_graph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +39,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="初始化" />
+        <option name="rewordedMessage" value="初始化" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="031f3959efb491e0f6d14d66853cbd5f1b70a090" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -76,37 +62,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Flask 服务器.AGKG.executor": "Run",
-    "Flask 服务器.Flask (AGKG/app.py).executor": "Run",
-    "Python.babel_net_client.executor": "Run",
-    "Python.entity_embedding.executor": "Run",
-    "Python.knowledge_search.executor": "Run",
-    "Python.neo4j.executor": "Run",
-    "Python.neo4j_client (1).executor": "Run",
-    "Python.neo4j_client.executor": "Run",
-    "Python.search_history_service.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.tranE_client (1).executor": "Run",
-    "Python.tranE_client.executor": "Run",
-    "Python.ttt.executor": "Run",
-    "Python.user_service.executor": "Debug",
-    "Python.zhipu_client (1).executor": "Run",
-    "Python.zhipu_client.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/Python/AGKG/AGKG/templates",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Flask 服务器.AGKG.executor&quot;: &quot;Run&quot;,
+    &quot;Flask 服务器.Flask (AGKG/app.py).executor&quot;: &quot;Run&quot;,
+    &quot;Python.babel_net_client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.entity_embedding.executor&quot;: &quot;Run&quot;,
+    &quot;Python.knowledge_search.executor&quot;: &quot;Run&quot;,
+    &quot;Python.neo4j.executor&quot;: &quot;Run&quot;,
+    &quot;Python.neo4j_client (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.neo4j_client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.search_history_service.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tranE_client (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.tranE_client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ttt.executor&quot;: &quot;Run&quot;,
+    &quot;Python.user_service.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.zhipu_client (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.zhipu_client.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Python/AGKG/AGKG/templates&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Python\AGKG\AGKG\templates" />
@@ -400,6 +386,8 @@
     <list>
       <item itemvalue="Flask 服务器.AGKG" />
       <item itemvalue="Flask 服务器.Flask (AGKG/app.py)" />
+      <item itemvalue="Python.entity_embedding" />
+      <item itemvalue="Python.tranE_client" />
       <item itemvalue="Python.search_history_service" />
       <item itemvalue="Python.user_service" />
       <item itemvalue="Python.neo4j_client" />
@@ -516,17 +504,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="初始化" />
     <option name="LAST_COMMIT_MESSAGE" value="初始化" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/AGKG/services/user_service.py</url>
-          <line>59</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AGKG$neo4j_client__1_.coverage" NAME="neo4j_client (1) 覆盖结果" MODIFIED="1741422344571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/client" />

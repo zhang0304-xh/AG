@@ -7,12 +7,7 @@ main_routes = Blueprint('main_routes', __name__)
 def index():
     # Renders the main page (e.g., index.html)
     # We might need to create index.html later or modify this
-    return render_template('crop_qa.html') # Assuming you have or will have an index.html
-
-@main_routes.route('/login')
-def login_page():
-    """Serves the login page."""
-    return render_template('login.html')
+    return render_template('login.html') # Assuming you have or will have an index.html
 
 @main_routes.route('/register')
 def register_page():

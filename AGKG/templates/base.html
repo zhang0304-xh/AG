@@ -24,7 +24,7 @@
         </div>
         <ul class="navbar-nav px-3 mt-4">
             <li class="nav-item">
-                <a class="nav-link {% if request.endpoint == 'main_routes.index' %}active{% endif %}" href="{{ url_for('main_routes.index') }}">
+                <a class="nav-link {% if request.endpoint == 'main_routes.crop_qa' %}active{% endif %}" href="{{ url_for('main_routes.index') }}">
                     <i class="bi bi-chat-dots"></i>
                     <span class="ms-2">智能问答</span>
                 </a>
@@ -122,7 +122,7 @@
                     }
                     
                     // 重定向到首页
-                    window.location.href = '/login';
+                    window.location.href = '/';
                 });
             }
         });

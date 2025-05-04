@@ -49,7 +49,7 @@ function setupResponsiveSidebar() {
 function checkAuthAndRedirect() {
     // 排除登录和注册页面，防止循环重定向
     const currentPath = window.location.pathname;
-    if (currentPath === '/login' || currentPath === '/register') {
+    if (currentPath === '/' || currentPath === '/register') {
         return;
     }
     
@@ -59,7 +59,7 @@ function checkAuthAndRedirect() {
     // 如果用户未登录，重定向到登录页面
     if (!userInfo.user_id || !userInfo.username) {
         console.log('匿名用户访问，重定向到登录页面');
-        window.location.href = '/login';
+        window.location.href = '/';
     } else {
         // 如果用户已登录，确保用户信息与导航栏同步
         updateNavBar(userInfo);
