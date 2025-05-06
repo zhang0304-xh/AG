@@ -312,7 +312,7 @@ function updateNodesToShowLabels(nodeId) {
 function loadGraphData(entityName = '小麦') {
     console.log(`正在加载实体 "${entityName}" 的知识图谱数据...`);
 
-    let apiUrl = '/api/knowledge_graph/visualization';
+    let apiUrl = '/api/knowledge_graph/search_node_by_name';
     if (entityName) {
         apiUrl += `?entity_name=${encodeURIComponent(entityName)}`;
     }
@@ -952,7 +952,7 @@ function performSearch() {
     console.log(`正在搜索: "${query}"`);
     
     // 构建搜索API URL
-   const apiUrl = `/api/knowledge_graph/visualization?entity_name=${encodeURIComponent(query)}`;
+   const apiUrl = `/api/knowledge_graph/search_node_by_name?entity_name=${encodeURIComponent(query)}`;
     
     fetchGraphData(
         apiUrl,

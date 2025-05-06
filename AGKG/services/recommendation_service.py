@@ -93,4 +93,4 @@ class RecommendationService:
             
 
 if __name__ == "__main__":
-    print(RecommendationService()._get_user_recent_entities("11c59305ecb247d598e6fd01b496888f"))
+    pass

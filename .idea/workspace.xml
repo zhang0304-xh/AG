@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10c895b-820e-4a6f-b150-3b2c328f5495" name="更改" comment="初始化">
-      <change afterPath="$PROJECT_DIR$/AGKG/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AGKG/core/client_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/api/knowledge_graph_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/api/knowledge_graph_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/neo4j_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/neo4j_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/client/transE_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/client/transE_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/repository/db/record.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/repository/db/record.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/services/knowledge_graph_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/services/knowledge_graph_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/static/js/crop_qa.js" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/static/js/crop_qa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGKG/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/client/transE_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/core/client_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/core/client_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/services/recommendation_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/AGKG/services/recommendation_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/tests/transE_client_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGKG/transE_data/final_embeddings.pkl" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +176,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="search_history_service" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="record_history_service" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AGKG" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,7 +190,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AGKG/services/search_history_service.py" />
+      <option name="SCRIPT_NAME" value="E:\Python\AGKG\AGKG\services\record_history_service.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -349,7 +343,7 @@
       <item itemvalue="Flask 服务器.AGKG" />
       <item itemvalue="Flask 服务器.Flask (AGKG/app.py)" />
       <item itemvalue="Python.recommendation_service" />
-      <item itemvalue="Python.search_history_service" />
+      <item itemvalue="Python.record_history_service" />
       <item itemvalue="Python.user_service" />
       <item itemvalue="Python.neo4j_client" />
     </list>
@@ -358,7 +352,7 @@
         <item itemvalue="Python.recommendation_service" />
         <item itemvalue="Flask 服务器.Flask (AGKG/app.py)" />
         <item itemvalue="Python.user_service" />
-        <item itemvalue="Python.search_history_service" />
+        <item itemvalue="Python.record_history_service" />
         <item itemvalue="Python.neo4j_client" />
       </list>
     </recent_temporary>
@@ -452,7 +446,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746357597461</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="初始化">
+      <option name="closed" value="true" />
+      <created>1746546809764</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746546809764</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

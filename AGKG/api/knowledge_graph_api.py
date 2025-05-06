@@ -10,8 +10,8 @@ logger = logging.getLogger(__name__)
 knowledge_graph_api = Blueprint('knowledge_graph_api', __name__)
 graph_service = KnowledgeGraphService()
 
-@knowledge_graph_api.route('/api/knowledge_graph/visualization', methods=['GET'])
-def get_graph_visualization():
+@knowledge_graph_api.route('/api/knowledge_graph/search_node_by_name', methods=['GET'])
+def search_node_by_name():
     """
     获取知识图谱可视化数据
     
@@ -28,7 +28,7 @@ def get_graph_visualization():
         limit = int(request.args.get('limit', 10))
         
         # 使用服务获取图谱数据
-        graph_data = graph_service.get_graph_visualization_data(entity_name, limit)
+        graph_data = graph_service.search_node_by_name(entity_name, limit)
         
         # 检查是否有错误信息
         if 'error' in graph_data:

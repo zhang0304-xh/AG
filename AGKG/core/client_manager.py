@@ -1,7 +1,6 @@
 import logging
 from AGKG.client.neo4j_client import Neo4jClient
 from AGKG.client.zhipu_client import ZhipuClient
-from AGKG.client.transE_client import TransEClient
 
 # 配置日志
 logger = logging.getLogger('client_manager')
@@ -36,7 +35,6 @@ class ClientManager:
         # 初始化所有客户端
         self._neo4j_client = None
         self._zhipu_client = None
-        self._transE_client = None
 
         # 标记为已初始化
         self._initialized = True
@@ -54,13 +52,6 @@ class ClientManager:
             logger.info("首次请求智谱AI客户端，开始初始化...")
             self._zhipu_client = ZhipuClient()
         return self._zhipu_client
-
-    def get_transE_client(self):
-        """获取TransE客户端实例"""
-        if self._transE_client is None:
-            logger.info("首次请求TransE客户端，开始初始化...")
-            self._transE_client = TransEClient()
-        return self._transE_client
 
 
 # 不再在模块级创建实例

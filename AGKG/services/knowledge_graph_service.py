@@ -27,7 +27,7 @@ class KnowledgeGraphService:
         self.connected = True  # Neo4jClient已经在其自身的__init__中连接了数据库
         # 不需要再次调用connect()，避免重复连接和日志
         
-    def get_graph_visualization_data(self, entity_name: Optional[str] = None, limit: int = 10) -> Dict[str, Any]:
+    def search_node_by_name(self, entity_name: Optional[str] = None, limit: int = 10) -> Dict[str, Any]:
         """
         获取知识图谱可视化数据
         
@@ -51,7 +51,7 @@ class KnowledgeGraphService:
             nodes, links = self.neo4j_client.get_entity_and_neighbors(entity_name, limit)
             
             # 转换为前端所需的格式
-            return self._format_graph_data(nodes, links)
+            return self.format_graph_data(nodes, links)
         except Exception as e:
             logger.error(f"获取图谱数据失败: {str(e)}")
             # 返回空数据而不是抛出异常，让前端可以处理
@@ -79,7 +79,7 @@ class KnowledgeGraphService:
                 # 获取这些实体及其邻居形成的子图
                 entity_ids = [entity['id'] for entity in entities]
                 nodes, links = self.neo4j_client.get_subgraph_from_nodes(entity_ids)
-                return self._format_graph_data(nodes, links)
+                return self.format_graph_data(nodes, links)
             else:
                 return {'nodes': [], 'links': []}
         except Exception as e:
@@ -95,7 +95,7 @@ class KnowledgeGraphService:
             node_id = int(node_id)  # 将字符串ID转换为整数
             logger.info(f"展开节点: {node_id}")
             nodes, links = self.neo4j_client.get_entity_neighbors_by_id(node_id, limit)
-            return self._format_graph_data(nodes, links)
+            return self.format_graph_data(nodes, links)
         except ValueError as e:
             logger.error(f"节点ID格式错误: {node_id}")
             return {'nodes': [], 'links': [], 'error': f"无效的节点ID格式: {node_id}"}
@@ -103,7 +103,7 @@ class KnowledgeGraphService:
             logger.error(f"展开节点失败: {str(e)}")
             return {'nodes': [], 'links': [], 'error': f"展开失败: {str(e)}"}
     
-    def _format_graph_data(self, nodes, links):
+    def format_graph_data(self, nodes, links):
         # 格式化节点时统一转换为字符串
         formatted_nodes = []
         for node in nodes:
