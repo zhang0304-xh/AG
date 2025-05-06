@@ -4,7 +4,7 @@ import uuid
 
 logger = logging.getLogger(__name__)
 
-class RecordHistorySevice:
+class RecordHistoryService:
     def insert_record(self, search_query, answer, user_id, is_satisfied=None, rewritten_query=None):
         try:
             # 确保user_id是UUID类型
@@ -42,12 +42,11 @@ class RecordHistorySevice:
         # 获取用户的搜索历史记录
         records = Record.select().where(
             Record.user_id == user_uuid,
-            Record.is_satisfied == True  # 只考虑用户满意的搜索记录
         ).order_by(Record.created_at.desc())
 
-        return records
+        return list(records)
 
 
 if __name__ == '__main__':
    test_uuid = uuid.uuid4()
-   insert_record("AAA", "BBB", test_uuid, True, "DDD")
+   #insert_record("AAA", "BBB", test_uuid, True, "DDD")

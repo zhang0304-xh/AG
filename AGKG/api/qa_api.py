@@ -3,7 +3,7 @@ import logging
 from flask import Blueprint, request, jsonify
 import traceback
 from ..services.qa_service import QAService
-from ..services.record_history_service import insert_record
+from ..services.record_history_service import RecordHistoryService
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -45,7 +45,7 @@ def question_answering():
                 rewritten_query = result.get('rewritten_query')  # 从result中获取重写后的查询
                 
                 # 存储搜索记录
-                record_id = insert_record(
+                record_id = RecordHistoryService().insert_record(
                     search_query=question,
                     answer=answer,
                     user_id=user_id,
