@@ -4,13 +4,13 @@ from flask import Blueprint, render_template
 main_routes = Blueprint('main_routes', __name__)
 
 @main_routes.route('/')
-def index():
+def login():
     # Renders the main page (e.g., index.html)
     # We might need to create index.html later or modify this
     return render_template('login.html') # Assuming you have or will have an index.html
 
 @main_routes.route('/register')
-def register_page():
+def register():
     """Serves the registration page."""
     return render_template('register.html')
 

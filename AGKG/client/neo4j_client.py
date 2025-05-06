@@ -900,23 +900,27 @@ class Neo4jClient:
             self.log.error(f"Error getting node labels: {str(e)}")
             return []
 
-    def get_entity_id_by_name(self, entity_name):
-        """根据实体名称获取实体ID"""
+    def get_entity_id_by_name(self, entity_name: str) -> Optional[int]:
+        """根据实体名称查询实体ID
+        
+        Args:
+            entity_name: 实体名称
+            
+        Returns:
+            Optional[int]: 实体ID，如果不存在则返回None
+        """
         if not self.driver:
             self.connect()
         try:
             with self.driver.session() as session:
                 result = session.run("""
-            MATCH (n)
-            WHERE n.name = $entity_name
-            RETURN id(n) AS entity_id
-                """, entity_name=entity_name)
-                records = list(result)
-                if records:
-                    return records[0]["entity_id"]
-                return None
+                    MATCH (n {name: $name})
+                    RETURN id(n) AS entity_id
+                """, name=entity_name)
+                record = result.single()
+                return record["entity_id"] if record else None
         except Exception as e:
-            logger.error(f"根据名称 {entity_name} 查询实体ID时发生错误: {str(e)}")
+            logger.error(f"查询实体名称 {entity_name} 对应的ID时发生错误: {str(e)}")
             return None
 
     def get_entity_relations_by_id(self, entity_id):

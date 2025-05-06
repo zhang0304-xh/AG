@@ -3,7 +3,7 @@ import logging
 from flask import Blueprint, request, jsonify
 import traceback
 from ..services.qa_service import QAService
-from ..services.search_history_service import insert_record
+from ..services.record_history_service import insert_record
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')

@@ -5,16 +5,21 @@ from tqdm import tqdm  # 用于显示进度条
 from neo4j import AsyncGraphDatabase
 
 from AGKG.client.neo4j_client import Neo4jClient
+import pickle
 
 
 class TransEClient:
-    def __init__(self, embedding_dim=100, margin=1.0, learning_rate=0.01):
+    def __init__(self, embedding_dim=100, margin=1.0, learning_rate=0.01,
+                 embeddings_path="E:\\Python\\AGKG\\AGKG\\transE_data\\final_embeddings.pkl"):
         self.neo4j_client = Neo4jClient()
         self.embedding_dim = embedding_dim
         self.margin = margin
         self.learning_rate = learning_rate
         self.entities = {}  # 实体ID到嵌入向量的映射
         self.relations = {}  # 关系到嵌入向量的映射
+        self.embeddings_path = embeddings_path
+        self.load_embeddings(embeddings_path)
+
 
     async def initialize_embeddings(self):
         """初始化嵌入向量"""
@@ -142,34 +147,9 @@ class TransEClient:
                 print(f"Triplet ({h}, {r}, {t}): Distance = {distance:.4f}")
             else:
                 print(f"Triplet ({h}, {r}, {t}): Missing entity or relation.")
-
-    async def predict_tail(self, head, relation, top_k=5):
-        """使用TransE预测尾实体（异步方法）"""
-        try:
-            if head not in self.entities or relation not in self.relations:
-                return []
-                
-            head_vec = self.entities[head]
-            relation_vec = self.relations[relation]
             
-            # 计算 head + relation 向量
-            target_vec = head_vec + relation_vec
-            
-            # 计算所有实体与目标向量的距离
-            distances = []
-            for entity, entity_vec in self.entities.items():
-                distance = np.linalg.norm(target_vec - entity_vec, ord=2)
-                distances.append((entity, distance))
-                
-            # 按距离排序并返回top-k个结果
-            return sorted(distances, key=lambda x: x[1])[:top_k]
-            
-        except Exception as e:
-            print(f"Error in predict_tail: {e}")
-            return []
-            
-    def predict_tail_sync(self, head, relation, top_k=5):
-        """使用TransE预测尾实体（同步方法）"""
+    def predict_tail(self, head, relation, top_k=5):
+        """使用TransE预测尾实体"""
         try:
             if head not in self.entities or relation not in self.relations:
                 return []

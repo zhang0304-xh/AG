@@ -52,21 +52,24 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             // 获取用户ID（如果已登录）
-            const user_id = localStorage.getItem('user_id');
+            console.log(localStorage);
+            const user_info_str = localStorage.getItem('userInfo');
+            const user_info = user_info_str ? JSON.parse(user_info_str) : null;
+            const user_id = user_info?.user_id;
+
             console.log("搜索请求，user_id:", user_id, "类型:", typeof user_id);
-            
+
             // 发送请求到后端API
             const response = await fetch('qa', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ 
+                body: JSON.stringify({
                     question,
-                    user_id: user_id
+                    user_id: user_id || null  // 明确处理undefined情况
                 })
             });
-            
             // 检查响应的内容类型
             const contentType = response.headers.get('content-type');
             

@@ -1,0 +1,286 @@
+/* 认证页面统一样式 (登录/注册) */
+
+:root {
+    --primary-color: #2e7d32; /* 匹配导航栏深绿色 */
+    --primary-light: #60ad5e;
+    --primary-dark: #005005;
+    --primary-gradient: linear-gradient(to right, #2e7d32, #388e3c);
+    --secondary-color: #f8f9fa;
+    --accent-color: #b7e4c7;
+    --text-primary: #2c3e50;
+    --text-secondary: #6c757d;
+    --error-color: #e57373;
+    --success-color: #2e7d32;
+    --border-color: #edf2f7;
+    --hover-color: #f0f0f0;
+    --shadow-sm: 0 1px 3px rgba(46, 125, 50, 0.05);
+    --shadow-md: 0 2px 4px rgba(46, 125, 50, 0.1);
+    --shadow-lg: 0 4px 12px rgba(46, 125, 50, 0.15);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --transition: all 0.2s ease-in-out;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-color: var(--secondary-color);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.auth-container {
+    display: flex;
+    width: 900px;
+    max-height: 500px;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+/* 左侧侧边栏 */
+.auth-sidebar {
+    width: 400px;
+    background: var(--primary-gradient);
+    color: white;
+    position: relative;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* LOGO样式 */
+.app-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}
+
+.logo-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--primary-color);
+}
+
+.sidebar-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+}
+
+.sidebar-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* 特性列表 */
+.sidebar-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.feature-icon {
+    font-size: 1rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.feature-text {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* 右侧表单 */
+.auth-main {
+    flex: 1;
+    padding: 25px 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.auth-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* 输入框样式 */
+.input-with-icon {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px 10px 36px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    background-color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.form-control:focus + .input-icon {
+    color: var(--primary-color);
+}
+
+/* 密码显示/隐藏按钮 */
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.password-toggle:hover {
+    color: var(--primary-color);
+}
+
+.auth-button {
+    width: 100%;
+    padding: 10px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 8px;
+}
+
+.auth-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.auth-footer {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.auth-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+
+.message {
+    padding: 10px 14px;
+    margin: 12px 0;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    display: none;
+}
+
+.error {
+    background-color: #fef2f2;
+    color: #ef4444;
+    border: 1px solid #fee2e2;
+}
+
+.success {
+    background-color: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid #dcfce7;
+}
+
+/* 响应式设计 */
+@media (max-width: 920px) {
+    .auth-container {
+        width: 95%;
+        max-width: 450px;
+    }
+    
+    .auth-sidebar {
+        display: none;
+    }
+}

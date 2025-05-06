@@ -13,4 +13,3 @@ class Record(BaseModel):
     user_id = UUIDField(verbose_name='用户ID')
     is_satisfied = BooleanField(null=True, verbose_name='是否满意')
     rewritten_query = TextField(null=True, verbose_name='重写后的查询')
-    created_at = DateTimeField(default=datetime.datetime.now, verbose_name='创建时间')
