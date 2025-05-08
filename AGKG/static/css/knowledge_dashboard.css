@@ -43,9 +43,16 @@ body {
 }
 
 .card-body {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
+.g-3, .gy-3 {
+  --bs-gutter-y: 15px;
+}
+.mb-2 {
+  margin-bottom: .0rem !important;
+  padding-left: .25rem;
+}
 /* 统计概览卡片 */
 .overview-card {
   position: relative;

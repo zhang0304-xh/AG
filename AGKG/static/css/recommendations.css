@@ -131,6 +131,12 @@
 .filter-chip.active {
     background: #dfeddf;
     color: #307e34;
+    margin-left: 5px;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #307e34;
+    border-color: #307e34;
 }
 
 .filter-chip i {
