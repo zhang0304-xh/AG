@@ -5,6 +5,7 @@
     border: 1px solid rgba(0,0,0,.1);
     border-radius: 12px;
     overflow: hidden;
+    margin-bottom: 0;
 }
 
 .recommendation-card:hover {
@@ -30,7 +31,17 @@
 }
 
 .card-body {
-    padding: 1.25rem;
+    padding: 1.5rem;
+
+}
+
+.card {
+    margin: 0.2rem;
+}
+
+.col-lg-4 {
+    margin-bottom: 4px;
+    width: 33.33333333%;
 }
 
 .card-title {
@@ -83,10 +94,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fff;
+    /*background: #fff;*/
     border-radius: 12px;
-    padding: 0.75rem 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    /*padding: 0.5rem 1rem;*/
+    /*box-shadow: 0 2px 8px rgba(0,0,0,0.05);*/
+    /*margin-bottom: 0.5rem;*/
 }
 
 .filter-chips {
@@ -99,7 +111,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     border: none;
     background: #f8f9fa;
     color: #6c757d;
@@ -108,6 +120,7 @@
     font-weight: 500;
     transition: all 0.2s ease;
     cursor: pointer;
+    margin-bottom: 0;
 }
 
 .filter-chip:hover {
@@ -116,8 +129,8 @@
 }
 
 .filter-chip.active {
-    background: #e7f1ff;
-    color: #0d6efd;
+    background: #dfeddf;
+    color: #307e34;
 }
 
 .filter-chip i {
@@ -154,4 +167,19 @@
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
-} 
+}
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: #307e34 !important;
+}
+
+.btn-outline-primary {
+    color: #307e34;
+    border-color: #307e34;
+}
+
+.bg-info {
+    --bs-bg-opacity: 1;
+    background-color: rgb(59 158 64) !important;
+}

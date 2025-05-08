@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         recommendations.forEach(rec => {
             const cardDiv = document.createElement('div');
-            cardDiv.className = 'col-md-6 col-lg-4 mb-4';
+            cardDiv.className = 'col-md-6 col-lg-4';
             
             let badgeClass = 'bg-primary';
             let icon = 'fas fa-lightbulb';
@@ -122,17 +122,15 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </span>
                             </div>
                         ` : ''}
-                        <div class="d-flex align-items-center mb-3">
+                        <div class="d-flex align-items-center mb-2">
                             ${rec.frequency ? `
                                 <div class="visit-count">
                                     <i class="fas fa-chart-bar me-1"></i>${rec.frequency} 次浏览
                                 </div>
                             ` : ''}
-                            ${rec.score ? `
-                                <div class="similarity-score">
-                                    <i class="fas fa-chart-line me-1"></i>${(rec.score * 100).toFixed(1)}% 相关度
-                                </div>
-                            ` : ''}
+                            <div class="similarity-score">
+                                <i class="fas fa-chart-line me-1"></i>${(rec.score * 100).toFixed(1)}% 相关度
+                            </div>
                         </div>
                         <div class="card-actions">
                             <a href="/crop_qa?q=${encodeURIComponent(rec.name)}" class="btn btn-outline-primary btn-sm">
