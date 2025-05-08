@@ -309,7 +309,7 @@ function updateNodesToShowLabels(nodeId) {
  * 加载图谱数据
  * @param {string} entityName 可选，指定加载特定实体及其邻居
  */
-function loadGraphData(entityName = '小麦') {
+function loadGraphData(entityName = '桃树') {
     console.log(`正在加载实体 "${entityName}" 的知识图谱数据...`);
 
     let apiUrl = '/api/knowledge_graph/search_node_by_name';
